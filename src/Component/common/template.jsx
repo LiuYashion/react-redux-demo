@@ -29,7 +29,7 @@ const Main = mySeting => {
         render() {
             return <this.props.seting.component {...this.props} state={this.props.state.toJS()}/>;
         }
-
+		
         componentDidMount() {//获取数据
             if (this.props.seting.url) {
                 this.props.fetchPosts(this.props.seting.url,this.props.seting.data);
@@ -60,5 +60,11 @@ const Main = mySeting => {
     }, action)(Index); //连接redux
 }
 
+//
+//var deep = Immutable.Map({ a: 1, b: 2, c: Immutable.List.of(3, 4, 5) });
+//deep.toObject() // { a: 1, b: 2, c: List [ 3, 4, 5 ] }
+//deep.toArray() // [ 1, 2, List [ 3, 4, 5 ] ]
+//deep.toJS() // { a: 1, b: 2, c: [ 3, 4, 5 ] }
+//JSON.stringify(deep) // '{"a":1,"b":2,"c":[3,4,5]}'
 
 export default Main;
