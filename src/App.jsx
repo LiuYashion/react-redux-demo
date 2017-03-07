@@ -1,6 +1,16 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM, {render} from 'react-dom';
 import {Provider} from 'react-redux';
+
+/**
+ * 
+ * { 1.route}	：
+ * 
+ * { 2.store}	：
+ * 
+ * { 3.config}	：默认配置
+ * 
+ */
 import route from './Router/Route'; //路由配置
 import store from './Redux/Store/Store';
 import './Config/Config.js';//引入默认配置
@@ -17,8 +27,10 @@ import './Style/applyRecord.less';
 
 
 store.subscribe(() => { //监听state变化
-    //console.log(store.getState())
+    console.log(store.getState())
 });
+
+
 
 render(
     <Provider store={store}>

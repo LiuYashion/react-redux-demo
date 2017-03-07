@@ -4,6 +4,8 @@ import * as config from './Config';
 const {target} = config;
 export const Tool = {};
 
+//target 为目标网站
+
 Tool.paramType = data => {
     let paramArr = []; 
     let paramStr = ''; 
@@ -36,6 +38,7 @@ alertDom.setAttribute('id','alertTip');
 alertDom.appendChild(alertText);
 
 document.body.appendChild(alertDom);
+
 let timer = null;
 Tool.alert =  (msg,msg2) => {
     clearTimeout(timer);
@@ -55,6 +58,7 @@ Tool.alert =  (msg,msg2) => {
     },3000)
 }
 
+
 Tool.getStyle =  (obj,attr) => { 
     if(obj.currentStyle){ 
         return obj.currentStyle[attr]; 
@@ -66,6 +70,7 @@ Tool.getStyle =  (obj,attr) => {
 
 
 Tool.nextPage = (dom,currentPage,totalPage,callback,shouldUpdata) => { //分页
+
     let updata = shouldUpdata;
     let page = currentPage;
     let height = 0;

@@ -3,6 +3,7 @@ import pureRender from 'pure-render-decorator';
 import {History, Link } from 'react-router';
 import { connect } from 'react-redux';
 import { is, fromJS} from 'immutable';
+
 import {Tool} from '../Config/Tool';
 import {Header,template} from './common/mixin';
 
@@ -11,15 +12,15 @@ class Main extends Component {
     constructor() {
         super();
         this.state = {
-            saleMoney:'',  //销售金额
-            name:'',   //姓名
-            phone:'',   //电话
-            products:[],    //销售商品
-            postProduct:[], //上传的商品信息
-            serverId:'',   // 图片id
-            picSrc:'',     //图片src
-            saleOldvalue:'',    //金额上次input值
-            preventMountSubmit:true,//防止重复提交
+            saleMoney:'',  				//	销售金额
+            name:'',   					//	姓名
+            phone:'',   				//	电话
+            products:[],    			//	销售商品
+            postProduct:[], 			//	上传的商品信息
+            serverId:'',   				// 	图片id
+            picSrc:'',     				//	图片src
+            saleOldvalue:'',    		//	金额上次input值
+            preventMountSubmit:true,	//	防止重复提交
         }
 
         this.changeValue = (type,event) => {
@@ -54,32 +55,13 @@ class Main extends Component {
         }
 
         this.chooseImage = () => {
-            Tool.alert('测试环境无法获取微信签名');
-            let self = this;
-            wx.chooseImage({
-                count: 1, // 默认9
-                sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-                success: res => {
-                    let localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-                    self.setState({picSrc:localIds});
-                    self.uploadImage(localIds)
-                }
-            });
+        	
+          Tool.alert('测试Alert');
 
         }
 
         this.uploadImage = (localIds) => {
-            let self = this;
-            localIds = localIds.toString()
-            wx.uploadImage({
-                localId: localIds, // 需要上传的图片的本地ID，由chooseImage接口获得
-                isShowProgressTips: 1, // 默认为1，显示进度提示
-                success: res => {
-                    let serverId = res.serverId; // 返回图片的服务器端ID
-                    self.setState({serverId:serverId});
-                }
-            });
+
         }
 
         this.postInform = () => {

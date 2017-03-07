@@ -6,6 +6,7 @@ import *as action from '../../Redux/Action/Index';
 
 
 const Main = mySeting => {
+
     let seting = {
         id: '', //应用唯一id表示
         url: '', //请求地址
@@ -16,8 +17,9 @@ const Main = mySeting => {
     for (let key in mySeting) {
         seting[key] = mySeting[key];
     }
-
+	
     class Index extends Component {
+    	
         static defaultProps = { seting }
 
         constructor(props,context) {

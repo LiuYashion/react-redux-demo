@@ -14,6 +14,7 @@ class Roots extends Component {
 const history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHistory;
 
 
+
 const chooseProducts = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../Component/chooseProducts').default)
@@ -49,6 +50,11 @@ const applyDeposit = (location, cb) => {
         cb(null, require('../Component/applyDeposit').default)
     },'applyDeposit')
 }
+/*
+ * require.ensure([])
+ * 可以用来独立打包
+ */
+
 
 const RouteConfig = (
     <Router history={history}>
@@ -66,4 +72,8 @@ const RouteConfig = (
     </Router>
 );
 
+/*
+ * IndexRoute：
+ * 根据路由控制组件
+ */
 export default RouteConfig;

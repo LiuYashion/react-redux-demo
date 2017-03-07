@@ -2,16 +2,16 @@ import fetch from 'isomorphic-fetch'
 import {target} from '../../Config/Config'
 import {Tool} from '../../Config/Tool'
 
-export const SET_STATE = 'SET_STATE'
-export const RECORD_STATE = 'RECORD_STATE'
-export const SAVE_PRODUCT_LIST = 'SAVE_PRODUCT_LIST'
-export const NEW_PRODUCT_DATA = 'NEW_PRODUCT_DATA'
-export const DELETE_ITEM = 'DELETE_ITEM'
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const GET_DATA_START = 'GET_DATA_START'
-export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'
-export const TEST_DISPATCH = 'TEST_DISPATCH'
+export const SET_STATE = 'SET_STATE'								//	set_stete
+export const RECORD_STATE = 'RECORD_STATE'					//	record_state
+export const SAVE_PRODUCT_LIST = 'SAVE_PRODUCT_LIST'//	save_produce_list
+export const NEW_PRODUCT_DATA = 'NEW_PRODUCT_DATA'	//	new_product_data
+export const DELETE_ITEM = 'DELETE_ITEM'						//	delete_item
+export const REQUEST_POSTS = 'REQUEST_POSTS'				//	request_posts
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'				//	receive_posts
+export const GET_DATA_START = 'GET_DATA_START'			//	get_data_start
+export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'	//	get_data_success
+export const TEST_DISPATCH = 'TEST_DISPATCH'				//	test_dispatch
 
 
 
