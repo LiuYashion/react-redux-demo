@@ -36,8 +36,17 @@ export class Header extends Component {  //头部标题
     }
     
     render() {
+    	/**
+    	 * {this.props}
+    	 * nav: true, 
+    	 * saleRecord: true, 
+    	 * title: "销售录入"
+    	 */
+
         let {nav, saleRecord ,title ,HideList,goback ,save,productsInform,applyRecord,params} = this.props;
         let navState = this.state.showHide;
+        
+       
         let indexNavStyle = {}
         if (nav) {
             nav = (

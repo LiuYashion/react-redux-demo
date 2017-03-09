@@ -4,11 +4,11 @@ import {Provider} from 'react-redux';
 
 /**
  * 
- * { 1.route}	：
+ * { 1.route}	
  * 
- * { 2.store}	：
+ * { 2.store}	
  * 
- * { 3.config}	：默认配置
+ * { 3.config}	
  * 
  */
 import route from './Router/Route'; //路由配置
@@ -27,7 +27,7 @@ import './Style/applyRecord.less';
 
 
 store.subscribe(() => { //监听state变化
-    console.log(store.getState())
+    //console.log(store.getState())
 });
 
 

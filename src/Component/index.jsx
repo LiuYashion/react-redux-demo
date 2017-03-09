@@ -112,7 +112,14 @@ class Main extends Component {
     }
 
     componentWillMount() {
-        let params = this.props.location.query;
+    	/**
+    	 * 取出url后面跟随的参数,
+    	 * this.props.location.search
+    	 * 截取?_wc=5&ef=wer&rr=456456
+    	 */
+        let params = this.props.location.query;  
+		
+
         if (this.props.producRecord.productList&&this.props.location.search!=='') {
             let {productList} = this.props.producRecord;
             let num = 0;
@@ -153,18 +160,28 @@ class Main extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+    	/*
+    	 * 使用immutable中的 fromJS() is()
+    	 * fromJS()默认把对象转成Map
+    	 * is(a, b)判断a,b是否相等
+    	 */
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state),fromJS(nextState))
     }
     
     componentWillUpdate(nextProps,nextState){
+    	
+    	/*
+    	 * 接收到新的props或者state后，进行渲染之前调用，此时不允许更新props或state。
+    	 */
         if (this.props !== nextProps) {
             let {data} = nextProps.state;
-
         }
+        
     }
    
     render() {
         let products = this.state.products;
+
         return (
             <div className="component_container index_module">
                 

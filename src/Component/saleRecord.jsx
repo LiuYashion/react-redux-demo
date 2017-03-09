@@ -247,5 +247,5 @@ export default template({
     data: {
             page:1,
             type:'UNAUDIT'
-        }
+    }
 });
