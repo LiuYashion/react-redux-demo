@@ -13,6 +13,14 @@ export const GET_DATA_START = 'GET_DATA_START'			//	get_data_start
 export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'	//	get_data_success
 export const TEST_DISPATCH = 'TEST_DISPATCH'				//	test_dispatch
 
+/**
+ * {isomorphic-fetch}
+ * 
+ * 优雅的请求
+ */
+
+
+
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
     let url = target + path + Tool.paramType(postData);
@@ -20,15 +28,23 @@ export const fetchPosts = (path, postData) => {
 
     return dispatch => {
         dispatch(requestPosts(postData));
+        /*
+         * 	首先dispatch出去一个action,这里的是
+         * 	{
+					    type: REQUEST_POSTS,
+					    path
+					  }
+					  
+         */
         return fetch(url,{
             mode: 'cors',
             "Content-Type": "application/json",
         })
         .then(response => {
             if(response.ok){
-                response.json().then(json => dispatch(receivePosts(path, json)))
+              response.json().then(json => dispatch(receivePosts(path, json)))
             }else{
-                console.log("status", response.status);
+              console.log("status", response.status);
             }
         })
         .catch(error => console.log(error))
