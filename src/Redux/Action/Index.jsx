@@ -34,8 +34,10 @@ export const fetchPosts = (path, postData) => {
 					    type: REQUEST_POSTS,
 					    path
 					  }
-					  
+					 	 会触发reducer中REQUEST_POSTS对于的方法,
+					 	然后返回一个fetch对象
          */
+
         return fetch(url,{
             mode: 'cors',
             "Content-Type": "application/json",
@@ -50,6 +52,8 @@ export const fetchPosts = (path, postData) => {
         .catch(error => console.log(error))
     }
 }
+
+
 
 //手动调用获取数据的aciton
 export const getData = (path, postData, success, name) => {
