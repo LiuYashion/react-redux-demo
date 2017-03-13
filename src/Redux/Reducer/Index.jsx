@@ -20,10 +20,10 @@ const defaultlState = Immutable.fromJS({data: {}, isFetching: false})
 export const fetchData = (state = defaultlState , action = {}) => {
     switch(action.type){
         case REQUEST_POSTS:
-        	//request_posts
+        	//requestPosts
             return state.set('isFetching',true);
         case RECEIVE_POSTS:
-        	//receive_posts,返回一个新的state
+        	//receivePosts,返回一个新的state
             return Immutable.Map({'data':action.json,'isFetching':false});
         default:
             return state
@@ -34,10 +34,18 @@ export const fetchData = (state = defaultlState , action = {}) => {
 export const requestData = (state = {}, action = {}) => {
     switch(action.type){
         case GET_DATA_START:
-        	//get_data_start
+        	//getDataStart
             return state;
         case GET_DATA_SUCCESS:
-        	//get_data_success
+        	//action(path, json, success, name)
+        	/*
+        	 * {
+        	 * 	/shopro/data/record.json
+        	 * 	http_code: 200, data: Object
+        	 * 	true
+        	 * 	changeType
+        	 * }
+        	 */
             action.success(action.json);
             
             console.log( action.json )
@@ -52,7 +60,7 @@ export const requestData = (state = {}, action = {}) => {
 export const testData = (state = {}, action = {}) => {
     switch(action.type){
         case TEST_DISPATCH:
-        	//test_dispatch
+        	//testDispatch
             return Object.assign({},state,action);
         default:
             return state;
@@ -63,14 +71,14 @@ export const testData = (state = {}, action = {}) => {
 export const producRecord = (state = {}, action = {}) => {
     switch(action.type){
         case RECORD_STATE:
-        	//record_state
+        	//recordState
             return Object.assign({},state,action);
         case SAVE_PRODUCT_LIST:
-        	//save_produce_list
+        	//saveProduceList
             state['productList'] = [...action.productList];
             return state;       //记录商品列表数据，但是不触发组件更新
         case NEW_PRODUCT_DATA:
-        	//new_product_data
+        	//newProductData
             state['productData'] = [...action.productData];
             return state;
         default:
@@ -82,7 +90,7 @@ export const producRecord = (state = {}, action = {}) => {
 export const saleRecord = (state = Immutable.fromJS({}) , action = {}) => {
     switch(action.type){
         case DELETE_ITEM:
-        	//delete_item
+        	//deleteItem
             return Immutable.Map({index:action.index})
         default:
             return state;

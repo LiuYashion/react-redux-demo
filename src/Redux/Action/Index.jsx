@@ -46,7 +46,7 @@ export const fetchPosts = (path, postData) => {
             if(response.ok){
               response.json().then(json => dispatch(receivePosts(path, json)))
             }else{
-              console.log("status", response.status);
+              console.log("status: ", response.status);
             }
         })
         .catch(error => console.log(error))

@@ -26,16 +26,11 @@ class List extends Component {
 
 
 class ListItem extends Component {
-    static contextTypes = {
-        deleteItem: React.PropTypes.any
-    }
-
+	
     constructor(props,context) {
         super(props,context);
-        this.state = {
-			
-        }
-
+        this.state = {}
+		
         this.deleleOrder = () => {
             this.context.getData('/sales/sales/deleteSales',{sales_id:this.props.sales_id}, (res) => {
                 if (res.http_code == 200) {
@@ -106,27 +101,20 @@ class ListItem extends Component {
 
 
 class Main extends Component {
-    static propTypes = {
-        saleRecord:PropTypes.object.isRequired
-    }
-
-    static childContextTypes = {
-        deleteItem: React.PropTypes.any,
-        getData: React.PropTypes.any,
-    }
-
+    
     constructor(props,context) {
         super(props,context);
         this.state = {
-            data:[],  //分销商列表数组
-            oldName:'waited', //上次选中的类别，默认为waited
-            choosedClass:{waited:'team_choosed'}, //当前选中的类别，以此设置class名
-            currentPage:1, //当前所在页数
-            totalPage:1  ,//总共的页数
-            limit:20 ,  //每页加载的数量
-            shouldUpdata:true,  //当获取数据后才能进行加载
+            data:[],  								//分销商列表数组
+            oldName:'waited', 						//上次选中的类别，默认为waited
+            choosedClass:{waited:'team_choosed'}, 	//当前选中的类别，以此设置class名
+            currentPage:1, 							//当前所在页数
+            totalPage:1,							//总共的页数
+            limit:20 ,  							//每页加载的数量
+            shouldUpdata:true,  					//当获取数据后才能进行加载
         }
         this.chooseStatus = (event) => { //筛选类型
+        	
             let name = null;
             if (event.target.children[0]) {
                 name = event.target.children[0].getAttribute('name')
@@ -137,7 +125,9 @@ class Main extends Component {
                 this.state.oldName = name;
                 this.state.choosedClass = {};
                 this.state.choosedClass[name] = 'team_choosed';
-                this.forceUpdate();
+                
+                this.forceUpdate();	//重新刷新render
+                
                 let type = '';
                 if (name == 'failed') {
                     type = 'FAILED';
@@ -146,17 +136,20 @@ class Main extends Component {
                 }else if(name == 'passed'){
                     type = 'PASS';
                 }
+                
                 this.props.getData('/shopro/data/record.json',{page:1,type:type}, (res) => {
+                	console.log(res)
                     if (res.http_code == 200) {
                         this.setState({
                             data:res.data.data,
-                            currentPage:1,
+                            currentPage:res.data.currentPage,
                             totalPage:res.data.totalPage
                         })
                     }else{
                         Tool.alert(res.data.msg)
                     }
                 }, 'changeType')
+                
             }
         }
         this.deleteInform = (index) => { //删除信息
@@ -188,12 +181,7 @@ class Main extends Component {
             }, 'nextPage')
         }
     }
-    getChildContext () {
-        return {
-            deleteItem: this.props.deleteItem,
-            getData:this.props.getData
-        }
-    }
+    
     componentWillReceiveProps(nextProps){
         if (nextProps.saleRecord.index !== undefined) {
              this.deleteInform(nextProps.saleRecord.index)
@@ -233,7 +221,6 @@ class Main extends Component {
                 {
                     this.state.data.length > 0 ? <List list={this.state.data} /> : null
                 }
-               
             </div>
         );
     }
@@ -245,7 +232,7 @@ export default template({
     component: Main, //接收数据的组件入口
     url: '/shopro/data/record.json',
     data: {
-            page:1,
-            type:'UNAUDIT'
+        page:1,
+        type:'UNAUDIT'
     }
 });

@@ -69,6 +69,15 @@ Tool.getStyle =  (obj,attr) => {
 } 
 
 
+/*
+ * Tool.nextPage(this.refs.Container,this.state.currentPage,this.state.totalPage,this.getNextPage,this.state.shouldUpdata)
+ * 
+ * Tool.nextPage()
+ * 
+ * 
+ * 
+ */
+
 Tool.nextPage = (dom,currentPage,totalPage,callback,shouldUpdata) => { //分页
 
     let updata = shouldUpdata;
