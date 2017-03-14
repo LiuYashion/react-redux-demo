@@ -7,6 +7,17 @@ import { is, fromJS} from 'immutable';
 import {Tool} from '../Config/Tool';
 import {Header,template} from './common/mixin';
 
+/*
+ * tips:
+ * 
+ * 1.	this.setState({saleMoney:value})
+ * 2.	JSON.stringify(object) 对象json化
+ * 3.	<input type="text" maxLength='11' value={this.state.saleMoney} placeholder='请输入订单金额' onChange={this.changeValue.bind(this,'money')}/>
+ * 4.	<Link to={'/chooseProducts'} className={products.length > 0 ? 'showIcon':'link_choose'}>{'请选择销售的产品'}</Link>
+ * 5.	this.props.location.query;  //{dopa: "19", uzi: "abc"}
+ * 6.	this.props.location.search	//?dopa=19&uzi=abc
+ * 6.	
+ */
 
 class Main extends Component {
     constructor() {
@@ -24,6 +35,7 @@ class Main extends Component {
         }
 
         this.changeValue = (type,event) => {
+        	
             if (type === 'money') {
                 let value = event.target.value;
                 if((/^\d*?\.?\d{0,2}?$/gi).test(value)){
@@ -56,7 +68,7 @@ class Main extends Component {
 
         this.chooseImage = () => {
         	
-          Tool.alert('测试Alert');
+          	Tool.alert('测试Alert');
 
         }
 
@@ -112,14 +124,9 @@ class Main extends Component {
     }
 
     componentWillMount() {
-    	/**
-    	 * 取出url后面跟随的参数,
-    	 * this.props.location.search
-    	 * 截取?_wc=5&ef=wer&rr=456456
-    	 */
+    
         let params = this.props.location.query;  
 		
-
         if (this.props.producRecord.productList&&this.props.location.search!=='') {
             let {productList} = this.props.producRecord;
             let num = 0;
@@ -160,11 +167,6 @@ class Main extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-    	/*
-    	 * 使用immutable中的 fromJS() is()
-    	 * fromJS()默认把对象转成Map
-    	 * is(a, b)判断a,b是否相等
-    	 */
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state),fromJS(nextState))
     }
     
@@ -181,7 +183,7 @@ class Main extends Component {
    
     render() {
         let products = this.state.products;
-
+		console.log(this.props)
         return (
             <div className="component_container index_module">
                 

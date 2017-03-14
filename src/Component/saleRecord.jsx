@@ -6,6 +6,18 @@ import {Tool} from '../Config/Tool';
 import {Header,template} from './common/mixin';
 
 
+/*
+ * tips:
+ * 
+ * 1.	this.props.list.map((item, index) => {return...})
+ * 2.	is(a,b):比较a,b是否相等; 
+ * 3.	fromJS(a):obj->map,arr->list;数据转换
+ * 4.	<span onClick={this.deleleOrder}>删除</span>
+ * 5.	<header>创建时间：{created_at}{context}</header>
+ * 6.	<span style={{marginRight:'0.875rem'}}>{customers_name}</span>
+ */
+
+
 class List extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state),fromJS(nextState))
@@ -29,6 +41,7 @@ class ListItem extends Component {
 	
     constructor(props,context) {
         super(props,context);
+
         this.state = {}
 		
         this.deleleOrder = () => {
@@ -53,6 +66,9 @@ class ListItem extends Component {
         let showTip;
         let creatArr = created_at.split(':');
         created_at = creatArr[0] + ':' + creatArr[1];
+        
+        type = 'FAILED'
+        
         if (type == 'FAILED') {
             context = (<span className='order_status1'>未通过</span>);
             showTip = (<div className='failed_reason clear'>
@@ -208,6 +224,7 @@ class Main extends Component {
         if (this.state.currentPage < this.state.totalPage) {
             Tool.nextPage(this.refs.Container,this.state.currentPage,this.state.totalPage,this.getNextPage,this.state.shouldUpdata)
         }
+        
         return (
             <div ref='Container' className="component_container">
                <Header goback title='销售记录'/>

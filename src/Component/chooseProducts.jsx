@@ -54,6 +54,7 @@ class ListItem extends Component {
                         productCount: num
                     });
                 }
+                console.log('------1')
                 this.context.recordState(this.props.id,this.state.chooseState,num,this.props.index)
             }
         }
@@ -65,6 +66,7 @@ class ListItem extends Component {
                 this.setState({ 
                     productCount:newValue
                 });
+                console.log('------2')
                 this.context.recordState(this.props.id,this.state.chooseState,newValue,this.props.index)
             }
         }
@@ -72,6 +74,7 @@ class ListItem extends Component {
         this.changeState = () => {
             let state = !this.state.chooseState;
             this.setState({chooseState:state})
+            console.log( this.context )
             this.context.recordState(this.props.id,state,this.state.productCount,this.props.index)
         }
 
@@ -84,13 +87,26 @@ class ListItem extends Component {
     render() {
         let {productName,id} = this.props;
         let productCount = this.state.productCount;
+        
         return (
             <li className='chooseProduct_item clear'>
-                <div className={`chooseItem_left ellips left ${this.state.chooseState == true ? 'choosed':''}`} onClick={this.changeState}> {productName}</div>
+                <div 
+                	className={`chooseItem_left ellips left ${this.state.chooseState == true ? 'choosed':''}`} 
+                	onClick={this.changeState}> {productName}
+                </div>
                 <div className='chooseItem_right right'>
-                    <button disabled={productCount > 0 ? '':'disabled'} className={`${productCount > 0 ? 'reduce':'reduce_no'} button_style `} onClick={this.getProductCount.bind(this,'reduce')}></button>
-                    <input type='text' className='product_num' maxLength='5' value={productCount} onChange={this.handleChange}/>
-                    <button className='add button_style' onClick={this.getProductCount.bind(this,'add')}></button>
+                    <button 
+                    	disabled={productCount > 0 ? '':'disabled'} 
+                    	className={`${productCount > 0 ? 'reduce':'reduce_no'} button_style `} 
+                    	onClick={this.getProductCount.bind(this,'reduce')}
+                    ></button>
+                    <input type='text' className='product_num' maxLength='5'
+                    	value={productCount} 
+                    	onChange={this.handleChange}
+                    />
+                    <button className='add button_style' 
+                    	onClick={this.getProductCount.bind(this,'add')}
+                    ></button>
                 </div>
             </li>
         );
@@ -111,6 +127,7 @@ class Main extends Component {
             params:'',          //传入的参数
             shouldUpdata:false, //组件是否需要更新
             left:0,
+            bottom:0,
             num:0,
             director:-1,
             requestID:null,
@@ -137,7 +154,10 @@ class Main extends Component {
         this.getMove = () => {
             this.state.requestID = requestAnimationFrame(() => {
                 this.state.num = this.state.director*4 + this.state.num;
-                this.setState({left:this.state.num+'px'})
+                this.setState({
+                	left:this.state.num+'px',
+                	bottom:this.state.num+'px'
+                })
                 if (this.state.num >= this.state.clientWidth - 100 ) {
                     this.state.director = this.state.director*(-1)
                 }else if (this.state.num <= 0) {
@@ -198,10 +218,10 @@ class Main extends Component {
         cancelAnimationFrame(this.state.requestID);
     }
     render() {
-        let MoveDiv = {position:'fixed',backgroundColor:'red',height:'100px',width:'100px',zIndex:99999,left:this.state.left,bottom:'0'};
+        let MoveDiv = {position:'fixed',backgroundColor:'red',height:'100px',width:'100px',zIndex:99999,left:this.state.left,bottom:this.state.bottom};
         return (
             <div className="component_container">
-                {/*<div style={MoveDiv} onClick={this.move}></div>*/}
+                {<div style={MoveDiv} onClick={this.move}></div>}
                 <Header goback title='销售商品' save params={this.state.params} />
                 {
                   this.state.productList.length > 0 ? <List list={this.state.productList}/> : null

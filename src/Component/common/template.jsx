@@ -49,16 +49,19 @@ const Main = mySeting => {
     }
 
     //mapStateToProps and mapDispatchToProps
+    
+    //mapStateToProps中return的对象,将被全部添加至this.props
+    
     return connect(state => { 
+    	
         let {producRecord, saleRecord,requestData, testData} = state;
         return { 
             state: state['fetchData'],
-            producRecord,
-            saleRecord,
-            requestData,
+            producRecord ,
+            saleRecord ,
+            requestData ,
         } 
     }, action)(Template); 
-    
     //连接redux
     //将顶层组件与模版绑定后return回去，配置路由的时候用的就是和redux绑定的组件，
     //所以其实每个路由匹配的都是同一个组件，只不过这个组件的内容不同
