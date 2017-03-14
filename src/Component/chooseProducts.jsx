@@ -31,9 +31,10 @@ class List extends Component {
 class ListItem extends Component {
     static contextTypes = {
         recordState:React.PropTypes.any,
-        store:React.PropTypes.any
+        store:React.PropTypes.any,
+        liuyaxiong:React.PropTypes.any
     }
-
+	
     constructor(props,context){
         super(props,context)
         this.state = {
@@ -85,6 +86,7 @@ class ListItem extends Component {
     }
     
     render() {
+    	
         let {productName,id} = this.props;
         let productCount = this.state.productCount;
         
@@ -117,9 +119,10 @@ class ListItem extends Component {
 
 class Main extends Component {
     static childContextTypes = {
-        recordState:React.PropTypes.any
+        recordState:React.PropTypes.any,
+        liuyaxiong:React.PropTypes.any
     }
-
+	
     constructor(props,context) {
         super(props,context);
         this.state = {
@@ -171,7 +174,10 @@ class Main extends Component {
 
     getChildContext(){
         return{
-            recordState:this.props.recordState
+            recordState:this.props.recordState,
+            liuyaxiong:function(){
+	        	console.log("parents context")
+	        }
         }
     }
 

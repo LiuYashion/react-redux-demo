@@ -40,7 +40,6 @@ class ListItem extends Component {
             let showlist = !this.state.showlist
             this.setState({showlist:showlist})
         }
-
     }
 
     componentWillMount() {
@@ -69,10 +68,10 @@ class ListItem extends Component {
                 </header>
                 {
                     showList ?<ul className='detail_ul'>{
-                            this.props.applyList.map((item,index) => {
-                                return <DetailItem key={index} {...item} />
-                            })
-                        }
+                        this.props.applyList.map((item,index) => {
+                            return <DetailItem key={index} {...item} />
+                        })
+                    }
                     </ul>:null
                 }
             </li>
@@ -120,7 +119,6 @@ class Main extends Component {
         this.state = {
             recordList:[]
         }
-       
     }
 
     componentWillUpdate(nextProps, nextState) {

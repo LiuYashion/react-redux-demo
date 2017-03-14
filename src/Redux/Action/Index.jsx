@@ -26,6 +26,7 @@ export const fetchPosts = (path, postData) => {
     let url = target + path + Tool.paramType(postData);
     //	/shopro/data/record.json?page=1&type=UNAUDIT
 
+		
     return dispatch => {
         dispatch(requestPosts(postData));
         /*
