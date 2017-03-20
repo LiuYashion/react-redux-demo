@@ -21,7 +21,7 @@ const Main = mySeting => {
     class Template extends Component {
     	
         static defaultProps = { seting }
-
+		
         constructor(props,context) {
             super(props,context);
         }

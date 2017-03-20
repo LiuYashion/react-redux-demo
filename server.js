@@ -2,20 +2,20 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config.dev');
 
-//代理服务器
+// 相当于通过本地node服务代理请求到了http://cnodejs.org/api
 var proxy = [{
-	path: '/*/*', //必须得有一个文件地址，如果顶层文件夹名字不同，则用/*代替
-	target: 'http://dev.fe.ptdev.cn',
-	host: 'dev.fe.ptdev.cn',
-	secure: false
+    path: '/*/*',
+    target: 'https://cnodejs.org',
+	host: 'cnodejs.org'
 }];
+
+//启动服务
 var server = new WebpackDevServer(webpack(config), {
-	publicPath: config.output.publicPath,
-	progress: true,
-	stats: {
-		colors: true,
-	},
-	proxy
+    publicPath: config.output.publicPath,
+    proxy: proxy,
+    stats: {
+        colors: true
+    },
 });
 
 //将其他路由，全部返回index.html

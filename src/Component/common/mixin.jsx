@@ -15,99 +15,60 @@ export {template}
  */
 
 
+
+
 export class Header extends Component {  //头部标题
-     constructor(props,context) {
+    constructor(props,context) {
         super(props,context);
         this.state = {
-            showHide :'none', // 显示右侧菜单，默认隐藏
+        	chooseTab:{
+        		ask:'selected',
+        		share:'',
+        		job:'',
+        		good:''
+        	}
         }
-
-        this.showNav = () => { //显示右侧导航栏
-            if (this.state.showHide == 'block') {
-                this.setState({showHide:'none'})
-            }else{
-                this.setState({showHide:'block'})
-            }
-        }
+		
+		this.switchTab = (tab) => {
+			
+			var origin = {ask:'',share:'',job:'',good:''}
+			origin[tab] = 'selected'
+			
+			this.setState({
+                chooseTab:origin
+            })
+			
+			
+		}
     }
-
+	
+	getInitialState(){
+		
+	}
+	
     shouldComponentUpdate(nextProps, nextState) {
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state),fromJS(nextState))
     }
     
+    componentDidMount() {//获取数据
+        
+    }
+    
+    componentWillUnmount(){
+    	
+    }
+    
     render() {
-    	/**
-    	 * {this.props}
-    	 * nav: true, 
-    	 * saleRecord: true, 
-    	 * title: "销售录入"
-    	 */
-
-        let {nav, saleRecord ,title ,HideList,goback ,save,productsInform,applyRecord,params} = this.props;
-        let navState = this.state.showHide;
-        
-       
-        let indexNavStyle = {}
-        if (nav) {
-            nav = (
-                <div className='head_menu' onClick={this.showNav}>
-                    <ul className='head_listname'  style={{display:navState}} >
-                        <li>
-                            <IndexLink to="/">
-                                <span>销售录入</span>
-                                <span className='head_arrow'></span>
-                            </IndexLink>
-                        </li>
-                        <li>
-                            <Link to='/allDeposit'>
-                                <span>提现</span>
-                                <span className='head_arrow'></span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to='/helpCenter'>
-                                <span>帮助中心</span>
-                                <span className='head_arrow'></span>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            );
-        }
-        
-        if (goback&&params) {
-            goback = ( <Link to={'/index'+params} className='head_goback left'>返回</Link>)
-        }else if (goback){
-            goback = (<span className='head_goback left' onClick={() => window.history.back()}>返回</span>)
-        }
-
-        if (title&&title == '销售录入') {
-            indexNavStyle = {position:'absolute'}
-        }
-
+    	//.bind(this,'name')
         return (
-            <header className="head-list" style={indexNavStyle}>
-                {nav}
-                {goback}
-
-                {
-                    saleRecord&&<Link to="/saleRecord" className='head_icon_right'></Link>
-                }
-
-                {
-                    title&&<span className='head_title'>{title}</span>
-                }
-
-                {
-                    save&&<Link to={'/index'+params} className='head_save right'>确定</Link>
-                }
-
-                {
-                    applyRecord&&<Link to="/applyRecord" className='head_icon_right head_applyrecord_right'></Link>
-                }
+            <header className="head-list" >
+            	<span onClick={this.switchTab.bind(this,'ask')} className={this.state.chooseTab.ask}>问答</span>
+				<span onClick={this.switchTab.bind(this,'share')} className={this.state.chooseTab.share}>精华</span>
+				<span className='logo'>CNode</span>
+				<span onClick={this.switchTab.bind(this,'good')} className={this.state.chooseTab.good}>分享</span>
+				<span onClick={this.switchTab.bind(this,'job')} className={this.state.chooseTab.job}>招聘</span>
             </header>
         );
     }
 }
-
 

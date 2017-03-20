@@ -14,9 +14,13 @@ export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'	//	get_data_success
 export const TEST_DISPATCH = 'TEST_DISPATCH'				//	test_dispatch
 
 /**
- * {isomorphic-fetch}
- * 
- * 优雅的请求
+ * { fetchPosts }
+ * { getData }
+ * { recordState }
+ * { saveProductlist }
+ * { newProductData }
+ * { deleteItem }
+ * { fetchPosts }
  */
 
 
@@ -24,31 +28,22 @@ export const TEST_DISPATCH = 'TEST_DISPATCH'				//	test_dispatch
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
     let url = target + path + Tool.paramType(postData);
-    //	/shopro/data/record.json?page=1&type=UNAUDIT
-
-		
     return dispatch => {
         dispatch(requestPosts(postData));
-        /*
-         * 	首先dispatch出去一个action,这里的是
-         * 	{
-					    type: REQUEST_POSTS,
-					    path
-					  }
-					  
-         */
         return fetch(url,{
             mode: 'cors',
             "Content-Type": "application/json",
-        })
-        .then(response => {
+        }).then(response => {
+        	
             if(response.ok){
-              response.json().then(json => dispatch(receivePosts(path, json)))
+              response.json().then(json => {
+              	dispatch(receivePosts(path, json))             	
+              })
             }else{
               console.log("status: ", response.status);
             }
-        })
-        .catch(error => console.log(error))
+            
+        }).catch(error => console.log(error))
     }
 }
 
@@ -80,7 +75,7 @@ const requestPosts = path => {
 }
 
 //获取数据成功
-const receivePosts = (path, json) => {
+const receivePosts = (path, json) => {  
   return {
     type: RECEIVE_POSTS,
     path ,
@@ -146,6 +141,6 @@ const getDataSuccess = (path, json, success, name) => {
 export const testAction = (data) => {
     return{
         type:TEST_DISPATCH,
-        data,
+        data
     }
 }

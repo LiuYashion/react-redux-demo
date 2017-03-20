@@ -47,9 +47,6 @@ export const requestData = (state = {}, action = {}) => {
         	 * }
         	 */
             action.success(action.json);
-            
-            console.log( action.json )
-            
             state[action.name] = action.json;
             return state;
         default:
