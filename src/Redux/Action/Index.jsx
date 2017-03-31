@@ -49,6 +49,12 @@ export const fetchPosts = (path, postData) => {
 }
 
 //手动调用获取数据的aciton
+
+/**
+ * {dispatch}
+ * dispatch在这里没有定义,但是return之后的作用于中dispatch是有定义的
+ */
+
 export const getData = (path, postData, success, name) => {
     let url = target + path + Tool.paramType(postData);
     return dispatch => {
@@ -65,9 +71,6 @@ export const getData = (path, postData, success, name) => {
         .catch(error => console.log(error))
     }
 }
-
-
-
 
 
 //开始获取数据,url
