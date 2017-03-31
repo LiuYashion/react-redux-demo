@@ -17,11 +17,13 @@ const Main = mySeting => {
     for (let key in mySeting) {
         seting[key] = mySeting[key];
     }
-	
+
+
+
     class Template extends Component {
-    	
+
         static defaultProps = { seting }
-		
+
         constructor(props,context) {
             super(props,context);
         }
@@ -29,7 +31,7 @@ const Main = mySeting => {
         render() {
             return <this.props.seting.component {...this.props} state={this.props.state.toJS()}/>;
         }
-		
+
         componentDidMount() {//获取数据
             if (this.props.seting.url) {
                 this.props.fetchPosts(this.props.seting.url,this.props.seting.data);
@@ -37,7 +39,7 @@ const Main = mySeting => {
         }
 
         componentWillReceiveProps(nextProps) {
-            
+
         }
 
         shouldComponentUpdate(nextProps, nextState) {
@@ -48,23 +50,47 @@ const Main = mySeting => {
         }
     }
 
-    //mapStateToProps and mapDispatchToProps
-    
-    //mapStateToProps中return的对象,将被全部添加至this.props
-    
-    return connect(state => { 
-    	
+    /**
+     * [state description]
+     * children:null
+     * deleteItem:()
+     * fetchPosts:()
+     * getData:()
+     * history:Object
+     * location:Object
+     * newProductData:()
+     * params:Object
+     * producRecord:Object
+     * recordState:()
+     * requestData:Object
+     * route:Object
+     * routeParams:Object
+     * routes:Array[2]
+     * saleRecord:Map
+     * saveProductlist:()
+     * seting:Object
+     * state:Object
+     * testAction:()
+     * 组合之后,template里的{this.props}
+     */
+
+    /**
+     * 将{Template}与{action}绑定后return回去，配置路由的时候用的就是和redux绑定的组件
+     * 所以其实每个路由匹配的都是同一个组件，只不过这个组件的内容不同
+     */
+
+    return connect(state => {
         let {producRecord, saleRecord,requestData, testData} = state;
-        return { 
+        return {
             state: state['fetchData'],
             producRecord ,
             saleRecord ,
             requestData ,
-        } 
-    }, action)(Template); 
-    //连接redux
-    //将顶层组件与模版绑定后return回去，配置路由的时候用的就是和redux绑定的组件，
-    //所以其实每个路由匹配的都是同一个组件，只不过这个组件的内容不同
+        }
+    }, action)(Template);
+
+
+
 }
 
 

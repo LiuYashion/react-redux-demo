@@ -16,17 +16,18 @@ export const TEST_DISPATCH = 'TEST_DISPATCH'				//	test_dispatch
 /**
  * { fetchPosts }
  * { getData }
+ * 
  * { recordState }
  * { saveProductlist }
  * { newProductData }
  * { deleteItem }
- * { fetchPosts }
  */
 
 
 
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
+	
     let url = target + path + Tool.paramType(postData);
     return dispatch => {
         dispatch(requestPosts(postData));
@@ -64,6 +65,9 @@ export const getData = (path, postData, success, name) => {
         .catch(error => console.log(error))
     }
 }
+
+
+
 
 
 //开始获取数据,url
