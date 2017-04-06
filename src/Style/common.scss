@@ -1,3 +1,9 @@
+
+@font-face {
+	font-family: LBold;
+	src: url('font/PingFang Light.ttf');
+}
+
 body,div,span,header,footer,nav,section,aside,article,ul, li, a, p, h1, h2, h3, h4,h5, i, b, textarea, button, input, select  {
     padding: 0;
     margin: 0;
@@ -6,13 +12,13 @@ body,div,span,header,footer,nav,section,aside,article,ul, li, a, p, h1, h2, h3, 
     font-style: normal;
     text-decoration: none;
     border: none;
-    font-family: 'Microsoft YaHei';
+
     -webkit-tap-highlight-color:transparent;
     &:focus {
         outline: none;
     }
-    
+
 }
 *{
-    font-family: "microsoft yahei"
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 }

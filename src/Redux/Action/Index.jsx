@@ -13,128 +13,130 @@ export const GET_DATA_START = 'GET_DATA_START'			//	get_data_start
 export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'	//	get_data_success
 export const TEST_DISPATCH = 'TEST_DISPATCH'				//	test_dispatch
 
+
 /**
- * { fetchPosts }
- * { getData }
- * 
- * { recordState }
- * { saveProductlist }
- * { newProductData }
- * { deleteItem }
+ * 只定义操作对应的action
+ * -  fetchPosts
+ * -  getData
+ * -  recordState
+ * -  saveProductlist
+ * -  newProductData
+ * -  deleteItem
+ *
+ * -  requestPosts
+ * -  receivePosts
+ * -  getDataStart
+ * -  getDataSuccess
+ * -  testAction
+ *
+ * action中被暴露出来的方法,会返回一个包含type的对象,对象里有若干参数
+ * 如果没有,则会返回一个dispatch(fun(args)),该fun会返回一个包含type的对象
  */
 
-
-
-// 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
-	
+
     let url = target + path + Tool.paramType(postData);
     return dispatch => {
+        console.log("~~~~~~~~~~~~");
         dispatch(requestPosts(postData));
         return fetch(url,{
             mode: 'cors',
             "Content-Type": "application/json",
         }).then(response => {
-        	
+
             if(response.ok){
               response.json().then(json => {
-              	dispatch(receivePosts(path, json))             	
+                console.log("------------");
+              	dispatch(receivePosts(path, json))
               })
             }else{
               console.log("status: ", response.status);
             }
-            
+
         }).catch(error => console.log(error))
     }
 }
 
-//手动调用获取数据的aciton
-
-/**
- * {dispatch}
- * dispatch在这里没有定义,但是return之后的作用于中dispatch是有定义的
- */
-
 export const getData = (path, postData, success, name) => {
-    let url = target + path + Tool.paramType(postData);
-    return dispatch => {
-        dispatch(getDataStart(postData))
-        return fetch(url,{
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            mode: 'cors'
-        })
-        .then(response => response.json())
-        .then(json => dispatch(getDataSuccess(path, json, success, name)))
-        .catch(error => console.log(error))
-    }
+	//手动调用获取数据的aciton
+  let url = target + path + Tool.paramType(postData);
+  return dispatch => {
+      dispatch(getDataStart(postData))
+      return fetch(url,{
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          mode: 'cors'
+      })
+      .then(response => response.json())
+      .then(json => dispatch(getDataSuccess(path, json, success, name)))
+      .catch(error => console.log(error))
+  }
 }
 
-
-//开始获取数据,url
 const requestPosts = path => {
+	//开始获取数据,url
   return {
     type: REQUEST_POSTS,
     path
   }
 }
 
-//获取数据成功
-const receivePosts = (path, json) => {  
+const receivePosts = (path, json) => {
+	//获取数据成功
   return {
     type: RECEIVE_POSTS,
     path ,
-    json 
+    json
   }
 }
 
-//记录单个商品列表状态
 export const recordState = (id,chooseState,num,index) => {
-    return{
-        type:RECORD_STATE,
-        id,
-        chooseState,
-        num,
-        index
-    }
+	//记录单个商品列表状态
+  return{
+      type:RECORD_STATE,
+      id,
+      chooseState,
+      num,
+      index
+  }
 }
 
-//将商品列表保存在store中，组件再次渲染时调用
 export const saveProductlist = productList => {
-    return{
-        type:SAVE_PRODUCT_LIST,
-        productList
-    }
+	//将商品列表保存在store中，组件再次渲染时调用
+  return{
+      type:SAVE_PRODUCT_LIST,
+      productList
+  }
 }
 
-//保存商品列表也获取到的数据
-export const newProductData = productData => { 
-    return {
-        type:NEW_PRODUCT_DATA,
-        productData
-    }
-}   
-
-//销售列表页删除单个item
-export const deleteItem = index => {   
-    return {
-        type:DELETE_ITEM,
-        index
-    }
+export const newProductData = productData => {
+	//保存商品列表也获取到的数据
+  return {
+      type:NEW_PRODUCT_DATA,
+      productData
+  }
 }
 
-//开始获取数据
+export const deleteItem = index => {
+	//销售列表页删除单个item
+  return {
+      type:DELETE_ITEM,
+      index
+  }
+}
+
 const getDataStart = path => {
+	//开始获取数据
   return {
     type: GET_DATA_START,
     path
   }
 }
 
-//获取数据成功
 const getDataSuccess = (path, json, success, name) => {
+	//获取数据成功
   return {
     type: GET_DATA_SUCCESS,
     path ,
@@ -144,10 +146,10 @@ const getDataSuccess = (path, json, success, name) => {
   }
 }
 
-//记录单个商品列表状态
 export const testAction = (data) => {
-    return{
-        type:TEST_DISPATCH,
-        data
-    }
+  //记录单个商品列表状态
+  return{
+      type:TEST_DISPATCH,
+      data
+  }
 }

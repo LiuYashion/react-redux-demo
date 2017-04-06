@@ -18,10 +18,7 @@ const Main = mySeting => {
         seting[key] = mySeting[key];
     }
 
-
-
     class Template extends Component {
-
         static defaultProps = { seting }
 
         constructor(props,context) {
@@ -50,31 +47,37 @@ const Main = mySeting => {
         }
     }
 
-    /**
-     * [state description]
-     * children:null
-     * deleteItem:()
-     * fetchPosts:()
-     * getData:()
-     * history:Object
-     * location:Object
-     * newProductData:()
-     * params:Object
-     * producRecord:Object
-     * recordState:()
-     * requestData:Object
-     * route:Object
-     * routeParams:Object
-     * routes:Array[2]
-     * saleRecord:Map
-     * saveProductlist:()
-     * seting:Object
-     * state:Object
-     * testAction:()
-     * 组合之后,template里的{this.props}
-     */
 
     /**
+     * 此处的template.js结合了:
+     *
+     * mapStateToProps(state):  传入不同的reducer(reducer.jsx)
+     * reducer包含:
+     *    fetchData
+     *    requestData
+     *    testData
+     *    producRecord
+     *    saleRecord
+     * reducer内部匹配type,再计算state并返回
+     *
+     * mapDispatchToprops:  注入action(action/index.jsx)
+     * action包含:
+     *    fetchPosts
+     *    getData
+     *    recordState
+     *    saveProductlist
+     *    newProductData
+     *    deleteItem
+     *    testAction
+     * action会被自动放入this.props中
+     * 其中没有计算代码,只用于分发type,去匹配reducer
+     *
+     * 在组件中使用:
+     * 1.直接调用this.props.fetchPosts(...)
+     * 2.return一个包含type的对象
+     * 3.根据type匹配reducer,返回新的state
+     * 4.state改变,之后的都会改变
+     *
      * 将{Template}与{action}绑定后return回去，配置路由的时候用的就是和redux绑定的组件
      * 所以其实每个路由匹配的都是同一个组件，只不过这个组件的内容不同
      */
