@@ -14,13 +14,13 @@ class Header extends Component {  //头部标题
 	 * 此处注意{this.state}与{this.props.state}的区别
 	 */
     constructor(props,context) {
-      super(props,context);
+      	super(props,context);
 
-      this.state = {
-      	chooseTab:{ask:'selected',job:'',share:'',good:''}
-      }
+      	this.state = {
+      		chooseTab:{ask:'selected',job:'',share:'',good:''}
+      	}
 
-			this.switchTab = (tab) => {
+		this.switchTab = (tab) => {
 
         var selected = this.state.selectedTab || 'ask'
 
@@ -158,24 +158,21 @@ class ListItem extends Component{
 		var countPercent = this.numberConver(reply_count) + '/' + this.numberConver(visit_count)
 
 		return (
-
-      <Link to={`/topic/${id}`} className='home-item'>
-
+  			<Link to={`/topic/${id}`} className='home-item'>
 				<div className='item-left'>
 					<div className='item-avatar' style={divStyle}></div>
 				</div>
 				<div className='item-right'>
 					<div className='item-title'>{title}</div>
 					<div className='item-count'>
-            <span className='count count-num'>{countPercent}</span>
-            <span className='count count-creatday'>{this.tinyDateString(create_at)}</span>
-            <span className='count count-lastreply'>{this.tinyDateString(last_reply_at)}</span>
-          </div>
+            			<span className='count count-num'>{countPercent}</span>
+            			<span className='count count-creatday'>{this.tinyDateString(create_at)}</span>
+            			<span className='count count-lastreply'>{this.tinyDateString(last_reply_at)}</span>
+          			</div>
 				</div>
-
 			</Link>
 		)
-
+		
 	}
 
 }
@@ -186,105 +183,105 @@ class Main extends Component {
 		default:"example"
 	}
 
-  constructor(props, context) {
-      super(props, context);
-      this.state = {
-      	data:[],
-      	tab:'',
-      	currentPage:1,
-				page:1,
-				limit:20,
-				tab:'ask',
-				preTab:'ask',
-      	shouldUpdate:true
-      }
-
-			this.onTabChanged = (data) => {
-				this.state.tab = data
-			}
-  }
-
-
-
-  componentWillMount() {
-
-  }
-  componentDidMount() {
-    /**
-  	 * 真实DOM渲染之后调用
-  	 */
-  	var that = this;
-
-  	window.addEventListener('scroll', function(e){
-
-  		var ulBody = document.getElementsByClassName('home-ul')[0]
-  		var scale = ulBody.getBoundingClientRect()
-  		var windowHeight = window.innerHeight;
-
-  		if((-scale.top+windowHeight)>(scale.height - 1)){
-
-				var acquirePage = that.state.page;
-				var acquireItem = that.state.limit
-
-				var a = acquirePage+parseInt(acquireItem/50)
-				var c = acquireItem%50
-
-
-				if(c==0){
-					var c = that.props.fetchPosts('/api/v1/topics',{
-			        page:a,
-			        tab:that.state.tab,
-			        limit:10
-		    	})
-					that.state.limit += 10;
-				}else{
-					var c = that.props.fetchPosts('/api/v1/topics',{
-			        page:a,
-			        tab:that.state.tab,
-			        limit:c
-		    	})
-					that.state.limit += 10;
-				}
-
+  	constructor(props, context) {
+  		super(props, context);
+  		this.state = {
+  			data:[],
+  			tab:'',
+			currentPage:1,
+			page:1,
+			limit:20,
+			tab:'ask',
+			preTab:'ask',
+  			shouldUpdate:true
   		}
-  	}, false);
-  }
+
+		this.onTabChanged = (data) => {
+			this.state.tab = data
+		}
+  	}
+
+
+
+  	componentWillMount() {
+
+  	}
+  	componentDidMount() {
+	    /**
+	  	 * 真实DOM渲染之后调用
+	  	 */
+	  	var that = this;
+	
+	  	window.addEventListener('scroll', function(e){
+	
+	  		var ulBody = document.getElementsByClassName('home-ul')[0]
+	  		var scale = ulBody.getBoundingClientRect()
+	  		var windowHeight = window.innerHeight;
+	
+	  		if((-scale.top+windowHeight)>(scale.height - 1)){
+	
+					var acquirePage = that.state.page;
+					var acquireItem = that.state.limit
+	
+					var a = acquirePage+parseInt(acquireItem/50)
+					var c = acquireItem%50
+	
+	
+					if(c==0){
+						var c = that.props.fetchPosts('/api/v1/topics',{
+				        page:a,
+				        tab:that.state.tab,
+				        limit:10
+			    	})
+						that.state.limit += 10;
+					}else{
+						var c = that.props.fetchPosts('/api/v1/topics',{
+				        page:a,
+				        tab:that.state.tab,
+				        limit:c
+			    	})
+						that.state.limit += 10;
+					}
+	
+	  		}
+	  	}, false);
+  	}
 	componentWillReceiveProps(nextProps){
 
 		let {data} = nextProps.state;
 		this.state.data = []
 
-    this.state.data = data.data
+    	this.state.data = data.data
 
- 	}
-  componentWillUpdate(nextProps,nextState){
+ 		}
+  	componentWillUpdate(nextProps,nextState){
 
 
-  }
-  render() {
+  	}
+  	render() {
 
-    var divStyle = {
+    	var divStyle = {
 		  	position: 'absolute',
-        top:'100px',
-        zIndex:'900000',
+	        top:'100px',
+	        zIndex:'900000',
 		  	width:'100%',
-        height:'100px',
-        background:'lightblue',
-        color:'red'
+	        height:'100px',
+	        background:'lightblue',
+	        color:'red'
 		};
 
-    return (
-    	<div>
-    		<Header {...this.props} onTabChanged={this.onTabChanged} />
-    		{
-    			this.state.data.length > 0 ? <List lists = {this.state.data} /> : null
-    		}
-    	</div>
-    )
-  }
-  componentWillUnmount() {
+	    return (
+	    	<div>
+	    		<Header {...this.props} onTabChanged={this.onTabChanged} />
+	    		{
+	    			this.state.data.length > 0 ? <List lists = {this.state.data} /> : null
+	    		}
+	    	</div>
+	    )
+  	}
+  	componentWillUnmount() {
 
-  }
+  	}
 }
 
 export default template({

@@ -37,7 +37,7 @@ export const fetchPosts = (path, postData) => {
 
     let url = target + path + Tool.paramType(postData);
     return dispatch => {
-        console.log("~~~~~~~~~~~~");
+
         dispatch(requestPosts(postData));
         return fetch(url,{
             mode: 'cors',
@@ -46,7 +46,7 @@ export const fetchPosts = (path, postData) => {
 
             if(response.ok){
               response.json().then(json => {
-                console.log("------------");
+
               	dispatch(receivePosts(path, json))
               })
             }else{
@@ -85,11 +85,11 @@ const requestPosts = path => {
 
 const receivePosts = (path, json) => {
 	//获取数据成功
-  return {
-    type: RECEIVE_POSTS,
-    path ,
-    json
-  }
+  	return {
+    	type: RECEIVE_POSTS,
+    	path ,
+    	json
+  	}
 }
 
 export const recordState = (id,chooseState,num,index) => {

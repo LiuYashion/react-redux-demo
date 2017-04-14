@@ -14,8 +14,8 @@ class Roots extends Component {
 const history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHistory;
 
 
-import homePage from '../Component/homePage'; //销售录入
-import topic from '../Component/topic'; //销售录入
+import homePage	from	'../Component/homePage'; //销售录入
+import topic	from 	'../Component/topic'; //销售录入
 
 //const chooseProducts = (location, cb) => {
 //  require.ensure([], require => {
@@ -71,6 +71,7 @@ const RouteConfig = (
             <IndexRoute component={homePage} />//首页
             <Route path="homePage" component={homePage} />
             <Route path="topic/:id" component={topic} />
+            
             <Redirect from='*' to='/'  />
         </Route>
     </Router>

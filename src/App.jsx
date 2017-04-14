@@ -18,6 +18,7 @@ import './Config/Config.js';//引入默认配置
 import './Style/common.scss';
 import './Style/header.scss';
 import './Style/homePage.scss';
+import './Style/topic.scss';
 
 //import './Style/index.scss';
 //import './Style/chooseProducts.scss';

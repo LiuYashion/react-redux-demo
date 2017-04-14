@@ -7,6 +7,33 @@ import { is, fromJS} from 'immutable';
 import {Tool} from '../Config/Tool';
 import {template} from './common/mixin';
 
+class Header extends Component {
+	constructor(props, context) {
+    	super(props, context);
+  	}
+	render(){
+		return (
+			<div className='revert-head'>
+				<div className='revert-icon'></div>
+				<div className='revert-title'></div>
+			</div>
+		)
+	}
+	
+}
+
+class Content extends Component {
+	constructor(props, context) {
+    	super(props, context);
+  	}
+	render(){
+		return (
+			<div></div>
+		)
+	}
+	
+}
+
 
 class Main extends Component {
 
@@ -16,32 +43,34 @@ class Main extends Component {
 
   	constructor(props, context) {
     	super(props, context);
-
+    	
+    	
+    	
   	}
 
   	componentWillMount() {
-		let id = this.props.location.pathname.slice(7);
-		console.log(id)
 		
-		let data = {
-
-		}
-		this.props.fetchPosts('/api/v1/topic/'+id,)
 
   	}
   	componentDidMount() {
 
   	}
 	componentWillReceiveProps(nextProps){
-
+		let {data} = nextProps.state
+		console.log(data.data)
  	}
   	componentWillUpdate(nextProps,nextState){
-
 
   	}
   	render() {
     	return (
-    		<div>"topic-view"</div>
+    		<div>
+    			<Header /> 
+    			<Content>
+    			
+    			
+    			</Content>
+    		</div>
     	)
   	}
   	componentWillUnmount() {
@@ -49,7 +78,11 @@ class Main extends Component {
   	}
 }
 
+
 export default template({
-    id: 'topic',
-    component: Main
+    id: 'Topic',  //应用关联使用的redux
+    component: Main, //接收数据的组件入口
+    url: (props, state) => {
+        return '/api/v1/topic/' + (props.params.id || '');
+    }
 });

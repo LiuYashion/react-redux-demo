@@ -6,7 +6,7 @@ import *as action from '../../Redux/Action/Index';
 
 
 const Main = mySeting => {
-
+	
     let seting = {
         id: '', //应用唯一id表示
         url: '', //请求地址
@@ -17,12 +17,33 @@ const Main = mySeting => {
     for (let key in mySeting) {
         seting[key] = mySeting[key];
     }
+	
 
     class Template extends Component {
         static defaultProps = { seting }
 
         constructor(props,context) {
             super(props,context);
+            
+            /**
+             * {获取url}
+             * 跟随组件url后面的参数
+             * 会被存储在this.props.params
+             */
+            this.getUrl = () => {
+		        var {url} = this.props.seting;
+		        if(typeof url === 'function') {
+		            return url(this.props, this.state);
+		        }else if(url && typeof url === 'string') {
+		            return url;
+		        }else{
+		            return this.props.location.pathname;
+		        }
+		    }
+            
+            if( this.props.seting.url ){
+		        this.props.fetchPosts(this.getUrl(), this.props.seting.data);
+		    }
         }
 
         render() {
@@ -30,9 +51,7 @@ const Main = mySeting => {
         }
 
         componentDidMount() {//获取数据
-            if (this.props.seting.url) {
-                this.props.fetchPosts(this.props.seting.url,this.props.seting.data);
-            }
+
         }
 
         componentWillReceiveProps(nextProps) {
@@ -84,11 +103,12 @@ const Main = mySeting => {
 
     return connect(state => {
         let {producRecord, saleRecord,requestData, testData} = state;
+        
         return {
             state: state['fetchData'],
-            producRecord ,
-            saleRecord ,
-            requestData ,
+            producRecord,
+            saleRecord,
+            requestData,
         }
     }, action)(Template);
 

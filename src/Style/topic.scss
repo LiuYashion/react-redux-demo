@@ -1,0 +1,27 @@
+$base-blue-dark: #293E6A;
+$base-blue-mid: #3B5998;
+$base-blue-light: #639BF1;
+$base-blue-bit: #ccdbf3;
+
+$base-green: #77BA9B;
+$base-brown: #B6A754;
+
+$font-white-light:#ffffff;
+$font-white-mid:#e8e8e8;
+$font-white-dark:#d4d4d4;
+
+
+.revert-head{
+    width: 100%;
+    height: 2rem;
+    background: $base-blue-dark;
+}
+.revert-icon{
+    width: 2rem;
+    margin-left: 4px;
+    height: 2rem;
+    background: url(../images/back.png);
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
