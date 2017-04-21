@@ -22,13 +22,24 @@
  * 1.	<div ref='Container'></div> 加载后通过this.refs.Container可以访问到真实dom
  * 2.	<div className={`chooseItem_left ${this.state.chooseState == true ? 'choosed':''}`} 字符串模板
  * 3.	requestAnimationFrame来发起动画,cancelAnimationFrame来取消动画
+ 
+ 
 
+1.	在render的dom中加上ref:
+	<input ref='accesstoken' type='text' placeholder="Access Token" />
+	在自己的方面中可以通过this.refs.accesstoken.value来访问该dom的value
 
-
-
-
-
-
+2.	给子组件传props:
+	<div tags={object}></div>,在子组件中获取方式有2种
+	
+	componentWillReceiveProps(nextProps){
+		let {tags} = nextProps.tags
+		this.state.tags = tags
+ 	}
+	
+	render(){
+		let {tags} = this.props.tags
+	}
 
 
 

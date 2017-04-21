@@ -22,10 +22,10 @@ class Header extends Component {  //头部标题
 
 		this.switchTab = (tab) => {
 
-        var selected = this.state.selectedTab || 'ask'
-
-        if( selected != tab ){
-          	var origin = {ask:'',share:'',job:'',good:''}
+	        var selected = this.state.selectedTab || 'ask'
+	
+	        if( selected != tab ){
+	          	var origin = {ask:'',share:'',job:'',good:''}
   				origin[tab] = 'selected'
   				this.setState({
   					chooseTab:origin,
@@ -35,33 +35,31 @@ class Header extends Component {  //头部标题
   				this.props.onTabChanged(tab)
 
   				var queryTab = {
-  		        page:1,
-  						limit:10,
-  		        tab:tab
-  		    }
+  		        	page:1,
+  					limit:10,
+  		        	tab:tab
+  		    	}
 
   				this.props.fetchPosts('/api/v1/topics',queryTab)
-        }
+	        }
 
+		}
 
+		this.checkLengthToTop = () => {
 
-			}
-
-			this.checkLengthToTop = () => {
-
-			}
+		}
 
     }
 
-		componentWillMount(){
-			/**
-			 * this.state
-			 * Object {chooseTab: Object}
-			 * 首次渲染前调用,此处可以修改state
-			 */
+	componentWillMount(){
+		/**
+		 * this.state
+		 * Object {chooseTab: Object}
+		 * 首次渲染前调用,此处可以修改state
+		 */
     }
-
-		componentDidMount(){
+	
+	componentDidMount(){
 
 
    	}
@@ -77,12 +75,12 @@ class Header extends Component {  //头部标题
     	 * {next-this.props}
     	 */
     }
-		componentWillUpdate(){
+	componentWillUpdate(){
     	/**
     	 * 组件即将更新时
     	 */
    	}
-		componentDidUpdate(){
+	componentDidUpdate(){
     	/**
     	 * 组件更新后,已经可以访问到Dom元素
     	 */
@@ -91,10 +89,10 @@ class Header extends Component {  //头部标题
         return (
             <header className="head-list" >
             	<span onClick={this.switchTab.bind(this,'ask')} className={this.state.chooseTab.ask}>问答</span>
-							<span onClick={this.switchTab.bind(this,'good')} className={this.state.chooseTab.good}>精华</span>
-							<span className='logo'>CNode</span>
-							<span onClick={this.switchTab.bind(this,'share')} className={this.state.chooseTab.share}>分享</span>
-							<span onClick={this.switchTab.bind(this,'job')} className={this.state.chooseTab.job}>招聘</span>
+				<span onClick={this.switchTab.bind(this,'good')} className={this.state.chooseTab.good}>精华</span>
+				<span className='logo'>CNode</span>
+				<span onClick={this.switchTab.bind(this,'share')} className={this.state.chooseTab.share}>分享</span>
+				<span onClick={this.switchTab.bind(this,'job')} className={this.state.chooseTab.job}>招聘</span>
             </header>
         );
     }
@@ -114,17 +112,17 @@ class List extends Component {
 	componentWillReceiveProps(nextProps){
 
  	}
-  render() {
-      return (
-          <ul className="home-ul">
-              {
-                  this.props.lists.map((item, index) => {
-                      return <ListItem key={index} {...item} index={index}/>
-                  })
-              }
-          </ul>
-      );
-  }
+  	render() {
+      	return (
+          	<ul className="home-ul">
+            {
+              	this.props.lists.map((item, index) => {
+                  	return <ListItem key={index} {...item} index={index}/>
+              	})
+            }
+          	</ul>
+      	);
+  	}
 }
 
 class ListItem extends Component{
@@ -141,9 +139,9 @@ class ListItem extends Component{
 			}
 		}
 
-    this.tinyDateString = (string) => {
-      return string.slice(0,10)
-    }
+	    this.tinyDateString = (string) => {
+	      return string.slice(0,10)
+	    }
 
 	}
 
@@ -199,64 +197,71 @@ class Main extends Component {
 		this.onTabChanged = (data) => {
 			this.state.tab = data
 		}
+		
+		
+		
   	}
-
 
 
   	componentWillMount() {
 
   	}
+  	
+  	
   	componentDidMount() {
 	    /**
 	  	 * 真实DOM渲染之后调用
 	  	 */
 	  	var that = this;
-	
-	  	window.addEventListener('scroll', function(e){
-	
-	  		var ulBody = document.getElementsByClassName('home-ul')[0]
-	  		var scale = ulBody.getBoundingClientRect()
-	  		var windowHeight = window.innerHeight;
-	
-	  		if((-scale.top+windowHeight)>(scale.height - 1)){
-	
-					var acquirePage = that.state.page;
-					var acquireItem = that.state.limit
-	
-					var a = acquirePage+parseInt(acquireItem/50)
-					var c = acquireItem%50
-	
-	
-					if(c==0){
-						var c = that.props.fetchPosts('/api/v1/topics',{
-				        page:a,
-				        tab:that.state.tab,
-				        limit:10
-			    	})
-						that.state.limit += 10;
-					}else{
-						var c = that.props.fetchPosts('/api/v1/topics',{
-				        page:a,
-				        tab:that.state.tab,
-				        limit:c
-			    	})
-						that.state.limit += 10;
-					}
-	
-	  		}
-	  	}, false);
+		
+//	  	window.addEventListener('scroll', function(res){
+//
+//	  		var ulBody = document.getElementsByClassName('home-ul')[0]
+//
+//	  		var scale = ulBody.getBoundingClientRect()
+//	  		var windowHeight = window.innerHeight;
+//	
+//	  		if((-scale.top+windowHeight)>(scale.height - 1)){
+//	
+//				var acquirePage = that.state.page;
+//				var acquireItem = that.state.limit
+//
+//				var a = acquirePage+parseInt(acquireItem/50)
+//				var c = acquireItem%50
+//
+//
+//				if(c==0){
+//					var c = that.props.fetchPosts('/api/v1/topics',{
+//			        page:a,
+//			        tab:that.state.tab,
+//			        limit:10
+//		    	})
+//					that.state.limit += 10;
+//				}else{
+//					var c = that.props.fetchPosts('/api/v1/topics',{
+//			        page:a,
+//			        tab:that.state.tab,
+//			        limit:c
+//		    	})
+//					that.state.limit += 10;
+//				}
+//	
+//	  		}
+//	  	}, false);
+
+
   	}
 	componentWillReceiveProps(nextProps){
 
 		let {data} = nextProps.state;
 		this.state.data = []
+	
+		this.state.data = data.data
 
-    	this.state.data = data.data
-
- 		}
+	}
   	componentWillUpdate(nextProps,nextState){
-
-
+		
+	
   	}
   	render() {
 
@@ -280,8 +285,11 @@ class Main extends Component {
 	    )
   	}
   	componentWillUnmount() {
-
-  	}
+    	
+    	console.log("组件移除~")
+    	
+    }
+  	
 }
 
 export default template({

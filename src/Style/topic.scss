@@ -10,18 +10,79 @@ $font-white-light:#ffffff;
 $font-white-mid:#e8e8e8;
 $font-white-dark:#d4d4d4;
 
+.messageItem{
+    border-left: solid 3px $base-blue-light;
+    margin-bottom: 10px;
+    background: lightgray;
+}
+.item-time{
+    padding: 10px 0 0 10px;
+    font-size: 0.6rem;
+}
+.msg-name{
+    height: .7rem;
+    font-size: .7rem;
+}
+
+
+
+#content{
+    border-bottom: solid 1px $base-blue-bit;
+    background: lightsteelblue;
+    margin-bottom: 10px;
+}
 
 .revert-head{
-    width: 100%;
     height: 2rem;
     background: $base-blue-dark;
 }
+.revert-title{
+    padding: 4px;
+    margin: 0 1rem;
+    text-align: center;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-size: .9rem;
+    line-height: .9rem;
+    
+}
+.revert-baseinfo{
+    border-bottom: solid 1px $base-blue-bit;
+    display: flex;
+    padding-left: 4px;
+    padding: 4px;
+}
+.revert-info{
+    font-size: .6rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
 .revert-icon{
     width: 2rem;
+    display: block;
     margin-left: 4px;
     height: 2rem;
     background: url(../images/back.png);
-    background-size: 80%;
+    background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.markdown-text{
+    padding: 10px;
+    font-size: .6rem;
+    background: transparent;
+    p{
+        
+    }
+    img{
+        width: 100%;
+    }
+    pre {
+        padding: 16px;
+        overflow: auto;
+        background-color: #f7f7f7;
+        border-radius: 3px;
+    }
 }
