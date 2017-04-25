@@ -4,7 +4,8 @@ import {History, Link } from 'react-router';
 import { connect } from 'react-redux';
 import { is, fromJS} from 'immutable';
 import {Tool} from '../Config/Tool';
-import {Header,template} from './common/mixin';
+
+import { HeadNav, Container } from './common/HeadNav';
 
 
 class Main extends Component {
@@ -187,7 +188,8 @@ class Main extends Component {
         return (
             <div className="component_container index_module">
                 
-                <Header nav saleRecord title='销售录入'/>
+                <HeadNav needHeadNav title='首页'/>
+                
                 <div className='index_tip'>
                     <span className='tip_text'>请录入您的销售业绩</span>
                 </div>
@@ -253,9 +255,9 @@ class Main extends Component {
     }
 }
 
-export default template({
+export default Container({
     id: 'index',  //应用关联使用的redux
-    component: Main,//接收数据的组件入口
-    url: ''
+    component: Main,
+    url: '/api/v1/topics'
 });
 

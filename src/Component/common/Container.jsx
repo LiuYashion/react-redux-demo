@@ -6,7 +6,6 @@ import { is, fromJS} from 'immutable';
 import *as action from '../../Redux/Action/Index';
 
 
-
 const Main = mySeting => {
 	
     let seting = {

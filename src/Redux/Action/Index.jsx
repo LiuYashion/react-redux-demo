@@ -13,7 +13,7 @@ export const GET_DATA_START = 'GET_DATA_START'
 export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'
 export const TEST_DISPATCH = 'TEST_DISPATCH'
 
-// action
+
 
 //开始获取数据
 const requestPosts = path => {
