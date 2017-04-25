@@ -27,7 +27,6 @@ const Main = mySeting => {
         }
 
         render() {
-        	console.log(this.props.state.get('isFetching') )
             return (
             	<div className='template'>
             		<this.props.seting.component {...this.props} state={this.props.state.toJS()}/>

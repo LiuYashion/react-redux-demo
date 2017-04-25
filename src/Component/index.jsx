@@ -52,7 +52,6 @@ class Lists extends Component{
 	render() {
 		let { data } = this.props.state.data;
 		let lists;
-		console.log(data)
 		
 		if(data){
 			lists = (
@@ -98,7 +97,6 @@ class List extends Component{
 	render() {
 		
 		let { list } = this.props
-		console.log(list)
 		
 		let avaterStyle = {
 			'background':'url('+list.author.avatar_url+')',
@@ -106,7 +104,7 @@ class List extends Component{
 		}
 		
         return (
-            <Link to={'/hhhhhhh'} className="list">              
+            <Link to={'/TopicDetial'} className="list">              
 				<div className="list-top">
 					<div className="list-top-right">
 						<div className="list-top-right-top">{ list.title }</div>
