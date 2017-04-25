@@ -27,9 +27,7 @@ const Main = mySeting => {
         }
 
         render() {
-        	
-        	console.log( this.props.state )
-        	
+        	console.log(this.props.state.get('isFetching') )
             return (
             	<div className='template'>
             		<this.props.seting.component {...this.props} state={this.props.state.toJS()}/>
@@ -48,20 +46,21 @@ const Main = mySeting => {
         }
 
         shouldComponentUpdate(nextProps, nextState){
-            if (nextProps.state.get('isFetching')) {
-                return false
-            }
+//          if (nextProps.state.get('isFetching')) {
+//              return false
+//          }
             return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
         }
     }
 	
 	function mapStateToProps(state) {
-	  	let {producRecord, saleRecord,requestData, testData} = state;
+	  	let {fetchData, requestData, testData, producRecord, saleRecord } = state;
+	  
         return { 
-            state: state['fetchData'],
-            producRecord ,
-            saleRecord ,
-            requestData ,
+            state: fetchData,
+            producRecord,
+            saleRecord,
+            requestData,
         } 
 	}
 	
