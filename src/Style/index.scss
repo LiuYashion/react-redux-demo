@@ -54,6 +54,7 @@
 }
 .content_wrap{
     position: absolute;
+    background: lightgray;
     overflow: scroll;
     top: 2rem;
     right: 0;
@@ -63,20 +64,23 @@
 
 .list{
     margin: 10px;
-    height: 3.5rem;
-    background: ghostwhite;
+    height: 3.3rem;
+    background: whitesmoke;
+    border-radius: 6px;
     position: relative;
     padding: .2rem;
+    display: block;
 }
 .list-top{
     height: 2.3rem;
-    background: lightblue;
     position: relative;
 }
 .list-bottom{
-    margin-top: 0.2rem;
-    height: 1rem;
-    background: lightcoral;
+    margin-top: 0.3rem;
+    height: 0.8rem;
+    font-size: 0.6rem;
+    line-height: 0.8rem;
+    position: relative;
 }
 .list-top-right{
     position: absolute;
@@ -84,7 +88,6 @@
     top: 0;
     bottom: 0;
     left: 2.5rem;
-    background: green;
 }
 .list-top-left{
     width: 2.3rem;
@@ -102,7 +105,21 @@
 .list-top-right-bottom{
     margin-top: 0.2rem;
     height: 0.8rem;
-    background: brown;
+    color: gray;
     font-size: 0.6rem;
     line-height: 0.8rem;
+}
+.list-count-right{
+    position: absolute;
+    top: 0;
+    color: gray;
+    right: 0;
+}
+.list-count{
+    min-width: 4rem;
+    display: inline-block;
+    color: gray;
+    span{
+        color: black;
+    }
 }

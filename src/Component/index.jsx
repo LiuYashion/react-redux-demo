@@ -79,7 +79,20 @@ class List extends Component{
         super(props, context);
         
         this.simplifyTime = (timestamp) => {
-        	return timestamp
+        	let dateTime = new Date(timestamp);
+        	let nowTime  = new Date();
+        	
+        	let year   = nowTime.getFullYear()
+        	let year_  = dateTime.getFullYear()
+        	let month_ = dateTime.getMonth()+1
+        	let day_   = dateTime.getDate()
+        	
+        	if(year!=year_){
+        		return year_+'年'+month_+'月'+day_+'日'
+        	}else{
+        		return month_+'月'+day_+'日'
+        	}
+        	
         }
     }
 	render() {
@@ -93,7 +106,7 @@ class List extends Component{
 		}
 		
         return (
-            <div className="list">              
+            <Link className="list">              
 				<div className="list-top">
 					<div className="list-top-right">
 						<div className="list-top-right-top">{ list.title }</div>
@@ -106,9 +119,17 @@ class List extends Component{
 					<div className="list-top-left" style={ avaterStyle }></div>
 				</div>
 				<div className="list-bottom">
-				
+					<div className="list-count">
+						<span>{list.visit_count}</span>
+						{'次访问'}
+					</div>
+					<div className="list-count">
+						<span>{list.reply_count}</span>
+						{'条回复'}
+					</div>
+					<div className="list-count-right">{ '最近回复'+this.simplifyTime(list.last_reply_at) }</div>
 				</div>
-            </div>
+            </Link>
         )
     }
 }
