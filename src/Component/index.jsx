@@ -106,7 +106,7 @@ class List extends Component{
 		}
 		
         return (
-            <Link className="list">              
+            <Link to={'/hhhhhhh'} className="list">              
 				<div className="list-top">
 					<div className="list-top-right">
 						<div className="list-top-right-top">{ list.title }</div>
