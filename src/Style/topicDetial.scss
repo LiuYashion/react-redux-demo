@@ -1,0 +1,111 @@
+
+.topic-info{
+    padding: 10px;
+    height: 2rem;
+    background: #638a7d;
+    //background: linear-gradient(to bottom right, #638a7d, #5dcca7);
+    color: white;
+    margin-top: 2.2rem;
+    position: relative;
+}
+.topic-content{
+    padding: 10px;
+    font-size: 0.8rem;
+    word-wrap: break-word;
+    word-break: break-word;
+    height: auto;
+    background: #f3f3f3;
+    img{
+        width: 100%;
+    }
+}
+
+.markdown-text{
+    img{
+        width: 100%;
+    }
+}
+
+.topic-left{
+    height: 1.9rem;
+    width: 1.9rem;
+    display: inline-block;
+    border-radius: 4px;
+}
+.topic-right{
+    margin-left: 10px;
+    width: 12rem;
+    height: 1.9rem;
+    display: inline-block;
+    position: relative;
+}
+
+.right-info-1{
+    height: 0.95rem;
+    position: absolute;
+    top: 0;
+    font-size: 0.8rem;
+    line-height: 0.95rem;
+}
+.right-info-2{
+    height: 0.95rem;
+    position: absolute;
+    top: 0.95rem;
+    font-size: 0.8rem;
+    line-height: 0.95rem;
+}
+
+.topic-reply{
+    width: 100%;
+    margin-top: 10px;
+    height: auto;
+    background: ghostwhite;
+}
+
+.reply{
+    
+    height: auto;
+    border-left: solid 2px #21AA7D;
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+    background: #f3f3f3;
+    .reply-ups{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 3rem;
+        .ups{
+            height: 1rem;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 1rem;
+        }
+        .ups-icon{
+            background: url(../images/ups.png) no-repeat center;
+            background-size: 70% 100%;
+        }
+        .ups-count{
+            line-height: 1rem;
+            color: #21AA7D;
+        }
+        .down-icon{
+            background: url(../images/down.png) no-repeat center;
+            background-size: 70% 100%;
+        }
+    }
+    .reply-head{
+        height: 1rem;
+        color: darkgray;
+        font-size: 0.7rem;
+        line-height: 1rem;
+    }
+    .reply-content{
+        min-height: 3rem;
+        margin-left: 1.5rem;
+        font-size: 0.7rem;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+}

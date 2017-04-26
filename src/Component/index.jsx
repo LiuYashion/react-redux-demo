@@ -28,15 +28,40 @@ class TopBar extends Component{
 	
 	constructor(props, context) {
         super(props, context);
+        this.state = {
+        	good:'selected',
+			share:'',
+			ask:'',
+			job:''
+        }
+        
+        let that = this
+        this.tabBar = (index) => {
+        	
+        	this.setState({
+        		good:'',
+				share:'',
+				ask:'',
+				job:'',
+        		[index]:'selected'
+        	})
+        	console.log( that.props.fetchPosts )
+
+        }
+        
+       
+        
     }
 	render() {
-
+		let style = {
+			
+		}
         return (
             <div className="topbar">              
-				<div className="topbar-item">精华</div>
-				<div className="topbar-item">分享</div>
-				<div className="topbar-item">问答</div>
-				<div className="topbar-item">招聘</div>
+				<div onClick={ this.tabBar.bind(this,'good')  } className={"topbar-item "+this.state.good }>精华</div>
+				<div onClick={ this.tabBar.bind(this,'share') } className={"topbar-item "+this.state.share}>分享</div>
+				<div onClick={ this.tabBar.bind(this,'ask')   } className={"topbar-item "+this.state.ask  }>问答</div>
+				<div onClick={ this.tabBar.bind(this,'job')   } className={"topbar-item "+this.state.job  }>招聘</div>
             </div>
         )
     }
@@ -49,7 +74,11 @@ class Lists extends Component{
         super(props, context);
         
     }
+	componentWillReceiveProps(nextProps){
+
+   	}
 	render() {
+		
 		let { data } = this.props.state.data;
 		let lists;
 		
@@ -62,14 +91,13 @@ class Lists extends Component{
 		}else{
 			lists = ''
 		}
-          			
-          		
-		
+
         return (
             <div className="">              
 				{ lists }
             </div>
         )
+        
     }
 }
 class List extends Component{
@@ -104,14 +132,15 @@ class List extends Component{
 		}
 		
         return (
-            <Link to={'/TopicDetial'} className="list">              
+            <Link to={'/TopicDetial?id='+list.id} className="list">              
 				<div className="list-top">
 					<div className="list-top-right">
 						<div className="list-top-right-top">{ list.title }</div>
 						<div className="list-top-right-bottom">
 							{ list.author.loginname+' ' }
 							{ '发布于'+this.simplifyTime(list.create_at) }
-							<div></div>
+						<div>
+						</div>
 						</div>
 					</div>
 					<div className="list-top-left" style={ avaterStyle }></div>
@@ -136,6 +165,9 @@ class List extends Component{
 class Main extends Component {
     constructor(props, context) {
         super(props, context);
+        this.state = {
+        	lists:{}
+        }
     }
 
     componentWillMount() {
@@ -147,29 +179,32 @@ class Main extends Component {
     }
 	
     shouldComponentUpdate(nextProps, nextState) {
+    	
+    	
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state),fromJS(nextState))
     }
     
     componentWillUpdate(nextProps,nextState){
+    	
         if (this.props !== nextProps) {
             let {data} = nextProps.state;
         }
     }
    	
    	componentWillReceiveProps(nextProps){
-
+   		
    	}
    	
     render() {
     	
     	let { state } = this.props
     	
-    	let lists = state.data.data;
+    	
 
         return (
             <div className="container">              
                 <HeadNav needHeadNav_ title='首页'/> 
-                <TopBar />
+                <TopBar {...this.props}/>
                 <div className="content_wrap">
                 	{ state.isFetching ? <Loading/> : '' }
 					{ state.isFetching ? '' : <Lists {...this.props} /> }

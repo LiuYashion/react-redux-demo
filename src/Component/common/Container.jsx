@@ -53,13 +53,11 @@ const Main = mySeting => {
     }
 	
 	function mapStateToProps(state) {
-	  	let {fetchData, requestData, testData, producRecord, saleRecord } = state;
+	  	let {fetchData, topicDetialData } = state;
 	  
         return { 
             state: fetchData,
-            producRecord,
-            saleRecord,
-            requestData,
+            topicDetialData
         } 
 	}
 	

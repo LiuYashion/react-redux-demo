@@ -15,12 +15,9 @@ import './Config/Config.js';
 import './Style/common.scss';
 import './Style/head.scss';
 import './Style/index.scss';
-import './Style/chooseProducts.scss';
-import './Style/helpCenter.less';
-import './Style/saleRecord.less';
-import './Style/allDeposit.less';
-import './Style/applyDeposit.less';
-import './Style/applyRecord.less';
+
+import './Style/topicDetial.scss';
+
 
 store.subscribe(() => { 
     //console.log(store.getState())
