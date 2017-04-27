@@ -48,6 +48,10 @@ class Main extends Component {
         return (
             <div className="container">              
                 <HeadNav needHeadNav title={ '文章发布' }/> 
+                
+                <TopicTop className="topic-top"/>
+                <TopicBody />
+                <TopicBottom />
             </div>
         );
     }
