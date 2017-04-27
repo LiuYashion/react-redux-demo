@@ -63,6 +63,30 @@
     right: 0;
     left: 0;
     bottom: 0;
+    .float-bar{
+        position: fixed;
+        z-index: 1010;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1.5rem;
+        background: #21AA7D;
+        right: 0.5rem;
+        bottom: 0.5rem;
+        .bar-login{
+            display: block;
+            width: 3rem;
+            height: 3rem;
+            background: url(../images/login.png) no-repeat center;
+            background-size: 80%;
+        }
+        .bar-post{
+            display: block;
+            width: 3rem;
+            height: 3rem;
+            background: url(../images/post.png) no-repeat center;
+            background-size: 80%;
+        }
+    }
 }
 
 .list{

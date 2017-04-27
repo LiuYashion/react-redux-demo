@@ -4,6 +4,7 @@ import Immutable from 'immutable'
 
 import {REQUEST_POSTS, RECEIVE_POSTS} from '../Action/Index'
 import {REQUEST_DETIAL, RECEIVE_DETIAL} from '../Action/Index'
+import {LOGIN_SUCCESS, LOGOUT_SUCCESS, UNDER_LOGIN} from '../Action/Index'
 
 // reducer
 
@@ -32,6 +33,21 @@ export const topicDetialData = (state = defaultlState , action = {}) => {
             return state
     }
 }
+
+export const userLogData = (state = {} , action = {}) => {
+
+    switch(action.type){
+        case UNDER_LOGIN:
+            return {'state':'under'}
+        case LOGIN_SUCCESS:
+            return {'state':'login', data:action.json}//返回一个新的state
+        case LOGOUT_SUCCESS:
+            return {'state':'logout'}//返回一个新的state
+        default:
+            return {'state':'logout'}
+    }
+}
+
 
 ////手动获取数据
 //export const requestData = (state = {}, action = {}) => {

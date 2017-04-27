@@ -8,15 +8,25 @@
     margin-top: 2.2rem;
     position: relative;
 }
+.container{
+    overflow: hidden;
+}
 .topic-content{
     padding: 10px;
     font-size: 0.8rem;
     word-wrap: break-word;
     word-break: break-word;
     height: auto;
+    
     background: #f3f3f3;
     img{
         width: 100%;
+    }
+    *{
+        overflow: scroll;
+    }
+    code{
+        width:100%
     }
 }
 

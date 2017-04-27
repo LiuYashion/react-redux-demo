@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+
 import pureRender from 'pure-render-decorator';
 import {History, Link } from 'react-router';
 import { connect } from 'react-redux';
@@ -14,7 +15,7 @@ class Loading extends Component{
         super(props, context);
     }
 	render() {
-
+	
         return (
             <div className="loading-wrap">              
 				<div className="loading-1"></div>	
@@ -45,12 +46,12 @@ class TopBar extends Component{
 				job:'',
         		[index]:'selected'
         	})
-        	console.log( that.props.fetchPosts )
+        	that.props.fetchPosts('/api/v1/topics', {
+        		tab:index
+        	})
 
         }
-        
-       
-        
+
     }
 	render() {
 		let style = {
@@ -93,7 +94,7 @@ class Lists extends Component{
 		}
 
         return (
-            <div className="">              
+            <div className='holeLists' id='holeLists'>              
 				{ lists }
             </div>
         )
@@ -175,46 +176,77 @@ class Main extends Component {
     }
     
     componentDidMount() {
-        
+        if (this.props.seting.url) {
+            this.props.fetchPosts(this.props.seting.url,this.props.seting.data);
+        }
     }
 	
     shouldComponentUpdate(nextProps, nextState) {
     	
-    	
-        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state),fromJS(nextState))
+        let stringJson = window.sessionStorage.getItem(this.props.location.key);
+        
+        
+        if( JSON.parse(stringJson) && !JSON.parse(stringJson).needRefresh ){
+			
+			let clientTop  = JSON.parse(window.sessionStorage.getItem(this.props.location.key)).clientToTop
+			
+        	document.getElementById("content_wrap").scrollTop = clientTop;
+			
+    		let data = {
+	        	'needRefresh':true
+	        };
+	        window.sessionStorage.setItem(this.props.location.key, JSON.stringify(data));
+       		return false
+
+        }
+        
+    	return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state),fromJS(nextState))
     }
     
     componentWillUpdate(nextProps,nextState){
-    	
+
         if (this.props !== nextProps) {
             let {data} = nextProps.state;
         }
+        
     }
    	
    	componentWillReceiveProps(nextProps){
-   		
+   		nextProps.userLogData.state = this.props.userLogData.state
    	}
    	
     render() {
     	
-    	let { state } = this.props
+    	console.log(this.props)
     	
+    	let { state, userLogData } = this.props
     	
-
         return (
             <div className="container">              
                 <HeadNav needHeadNav_ title='首页'/> 
                 <TopBar {...this.props}/>
-                <div className="content_wrap">
+                <div className="content_wrap" id='content_wrap'>
+                	<div className='float-bar'>
+                		{ userLogData.state == 'login' ? <Link to={'/PostTopic'} className='bar-post'></Link> : <Link to={'/UserLogin'} className='bar-login'></Link> }
+                		
+                	</div>
                 	{ state.isFetching ? <Loading/> : '' }
-					{ state.isFetching ? '' : <Lists {...this.props} /> }
+					{ state.isFetching ? '' : <Lists ref="Lists" {...this.props} /> }
                 </div>
             </div>
         )
     }
     
+ 
+    
     componentWillUnmount() {
-       
+        
+        let data = {
+        	needRefresh:false,
+        	clientToTop: document.getElementById("content_wrap").scrollTop
+        };
+        window.sessionStorage.setItem(this.props.location.key, JSON.stringify(data));
+        
     }
 }
 

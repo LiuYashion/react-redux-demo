@@ -9,6 +9,52 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const REQUEST_DETIAL = 'REQUEST_DETIAL'
 export const RECEIVE_DETIAL = 'RECEIVE_DETIAL'
 
+export const LOGIN_SUCCESS  = 'LOGIN_SUCCESS'
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+export const UNDER_LOGIN    = 'UNDER_LOGIN'
+
+
+const underlogin  = () => {
+	return {
+    type: UNDER_LOGIN
+  }
+}
+const loginCNode  = (json) => {
+	return {
+    type: LOGIN_SUCCESS,
+    json
+  }
+}
+export const logoutPost = () => {
+	return {
+    type: LOGOUT_SUCCESS
+  }
+}
+
+export const loginPost = (path, postData) => {
+    let url = target + path
+    return dispatch => {
+	    dispatch( underlogin() );
+	    return fetch(url,{
+	        mode: 'cors',
+	        method: "POST",
+	        body:JSON.stringify({accesstoken:postData}),
+	        headers: {
+			      'Accept': 'application/json',
+			      'Content-Type': 'application/json'
+			    }
+	    })
+	    .then(response => {
+	        if(response.ok) {
+	            response.json().then( json=>dispatch( loginCNode(json) ) )
+	        }else{
+	            console.log("status", response.status);
+	        }
+	    })
+	    .catch(error => console.log(error))
+    }
+}
+
 
 //开始获取数据
 const requestPosts = path => {
@@ -20,10 +66,10 @@ const requestPosts = path => {
 //获取数据成功
 const receivePosts = (path, json) => {
   return {
-        type: RECEIVE_POSTS,
-        path ,
-        json 
-    }
+    type: RECEIVE_POSTS,
+    path ,
+    json 
+	}
 }
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
@@ -57,11 +103,11 @@ const requestTopicDetial = path => {
 }
 //获取数据成功
 const receiveTopicDetial = (path, json) => {
-  return {
-        type: RECEIVE_DETIAL,
-        path ,
-        json 
-    }
+	return {
+	    type: RECEIVE_DETIAL,
+	    path ,
+	    json 
+	}
 }
 // 页面初次渲染时获取数据
 export const queryTopicDetial = (path) => {

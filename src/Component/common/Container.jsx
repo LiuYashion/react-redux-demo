@@ -35,29 +35,27 @@ const Main = mySeting => {
         }
 		
         componentDidMount() {//获取数据
-            if (this.props.seting.url) {
-                this.props.fetchPosts(this.props.seting.url,this.props.seting.data);
-            }
-        }
-
-        componentWillReceiveProps(nextProps) {
             
         }
 
+        componentWillReceiveProps(nextProps) {
+
+        }
+
         shouldComponentUpdate(nextProps, nextState){
-//          if (nextProps.state.get('isFetching')) {
-//              return false
-//          }
+        	        	
+
             return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
         }
     }
 	
 	function mapStateToProps(state) {
-	  	let {fetchData, topicDetialData } = state;
+	  	let { fetchData, topicDetialData, userLogData } = state;
 	  
         return { 
             state: fetchData,
-            topicDetialData
+            topicDetialData,
+            userLogData
         } 
 	}
 	

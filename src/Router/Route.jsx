@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Router, Route, Redirect, IndexRoute, browserHistory, hashHistory } from 'react-router';
 
-import index from '../Component/index'; //销售录入
+import Index from '../Component/Index'; //销售录入
 
 class Roots extends Component {
     render() {
@@ -21,18 +21,16 @@ const TopicDetial = (location, cb) => {
         cb(null, require('../Component/TopicDetial').default)
     },'TopicDetial')
 }
-//
-//const helpCenter = (location, cb) => {
-//  require.ensure([], require => {
-//      cb(null, require('../Component/helpCenter').default)
-//  },'helpCenter')
-//}
-//
-//const saleRecord = (location, cb) => {
-//  require.ensure([], require => {
-//      cb(null, require('../Component/saleRecord').default)
-//  },'saleRecord')
-//}
+const UserLogin = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../Component/UserLogin').default)
+    },'UserLogin')
+}
+const PostTopic = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../Component/PostTopic').default)
+    },'PostTopic')
+}
 //
 //const allDeposit = (location, cb) => {
 //  require.ensure([], require => {
@@ -62,9 +60,11 @@ const TopicDetial = (location, cb) => {
 const RouteConfig = (
     <Router history={history}>
         <Route path="/" component={Roots}>
-            <IndexRoute component={index} />//首页
-            <Route path="index" component={index} />
+            <IndexRoute component={Index} />//首页
+            <Route path="Index" component={Index} />
             <Route path="TopicDetial" getComponent={TopicDetial} />
+            <Route path="UserLogin"   getComponent={UserLogin} />
+            <Route path="PostTopic"   getComponent={PostTopic} />
             <Redirect from='*' to='/'  />
         </Route>
     </Router>
