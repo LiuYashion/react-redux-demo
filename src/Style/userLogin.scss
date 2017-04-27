@@ -23,3 +23,41 @@
 .forlogin{
     top: 5rem;
 }
+
+@keyframes out-up
+{
+    from {opacity: 0;bottom: -1rem;}
+    to {opacity: 1;bottom: 0;}
+}
+@keyframes down
+{
+    from {bottom: 1rem;}
+    to {bottom: 0;}
+}
+.welcome{
+    position: absolute;
+    transform: translate(50%, 50%);
+    z-index: 1010;
+    right: 50%;
+    bottom: 50%;
+    width: 10rem;
+    text-align: center;
+    color: #333333;
+    
+    .wel-icon{
+        width: 3rem;
+        height: 3rem;
+        margin: 0 auto;
+        background: lightblue;
+        border-radius: 1.5rem;
+        animation: down 1000ms;
+    }
+    .wel-name{
+        position: relative;
+        animation: out-up 1000ms;
+    }
+    .wel-tips{
+        position: relative;
+        animation: out-up 1000ms;
+    }
+}

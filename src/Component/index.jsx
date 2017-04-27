@@ -213,6 +213,9 @@ class Main extends Component {
    	
    	componentWillReceiveProps(nextProps){
    		nextProps.userLogData.state = this.props.userLogData.state
+   		if(this.props.userLogData.data){
+   			nextProps.userLogData.data = this.props.userLogData.data
+   		}
    	}
    	
     render() {

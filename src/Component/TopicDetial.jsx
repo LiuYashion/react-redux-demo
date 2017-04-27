@@ -145,13 +145,19 @@ class Main extends Component {
         }
     }
     componentWillReceiveProps(nextProps){
+    	
+    	nextProps.userLogData.state = this.props.userLogData.state
+   		if(this.props.userLogData.data){
+   			nextProps.userLogData.data = this.props.userLogData.data
+   		}
+   		
         let data = nextProps.topicDetialData.get('data')
-        
         this.setState({
         	isFetching: nextProps.topicDetialData.get('isFetching'),
         	data: data ? data : ''
         })
     }
+
 	componentDidMount() {//获取数据
 		this.props.queryTopicDetial('/api/v1/topic/'+this.props.location.query.id)
     }

@@ -22,6 +22,27 @@ class Loading extends Component{
     }
 }
 
+class Welcome extends Component{
+	
+	constructor(props, context) {
+        super(props, context);
+    }
+	render() {
+		let {user} = this.props
+		let avaterStyle = {
+			'background':'url('+user.data.avatar_url+')',
+			'backgroundSize':'contain'
+		}
+        return (
+            <div className='welcome'>
+            	<div className="wel-icon" style={ avaterStyle }></div>
+            	<div className="wel-name">{user.data.loginname}</div>
+            	<div className="wel-tips">{'欢迎登录'}</div>
+            </div>
+        )
+    }
+}
+
 class Main extends Component {
 	
     constructor(props,context) {
@@ -61,6 +82,8 @@ class Main extends Component {
         
         console.log(userLogData)
         
+        
+        
         return (
             <div className="container">              
                 <HeadNav needHeadNav title={ '登录' }/> 
@@ -68,7 +91,7 @@ class Main extends Component {
 					userLogData.state == 'login' ? '' : <input type='text' className='login-input' value={value} placeholder="输入accesstoken" onKeyUp={this.onKeyup} onInput={this.handleInput}/>
 				}
 				{
-					userLogData.state == 'login' ? <div>{'欢迎登录'}</div> : ''
+					userLogData.state == 'login' ? <Welcome user={userLogData} /> : ''
 				}
 				<div className='login-tips'>
 					<p>{'登录https://cnodejs.org/'}</p>

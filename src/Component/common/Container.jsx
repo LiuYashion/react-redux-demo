@@ -39,7 +39,8 @@ const Main = mySeting => {
         }
 
         componentWillReceiveProps(nextProps) {
-
+        	
+			//nextProps.userLogData.state = this.props.userLogData.state
         }
 
         shouldComponentUpdate(nextProps, nextState){

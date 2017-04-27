@@ -26,18 +26,7 @@ class Main extends Component {
 	
     constructor(props,context) {
         super(props,context);
-        this.state = {
-        	value:''
-        }
-        this.handleInput = (event) => {
-        	this.setState({value: event.target.value});
-        }
-        this.onKeyup = (event) => {
-		    event.keyCode === 13 && this.handler()
-		}
-        this.handler = () => {
-        	this.props.loginCNode(this.state.value)
-        }
+        
     }
     componentWillReceiveProps(nextProps){
         
@@ -55,8 +44,7 @@ class Main extends Component {
     
     render() {
 
-		let value = this.state.value;
-        
+		console.log(this.props)
         return (
             <div className="container">              
                 <HeadNav needHeadNav title={ '文章发布' }/> 

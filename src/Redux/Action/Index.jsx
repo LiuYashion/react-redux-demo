@@ -46,7 +46,10 @@ export const loginPost = (path, postData) => {
 	    })
 	    .then(response => {
 	        if(response.ok) {
-	            response.json().then( json=>dispatch( loginCNode(json) ) )
+	            response.json().then( json=>{
+	            	json.token = postData
+	            	dispatch( loginCNode(json) )
+	            } )
 	        }else{
 	            console.log("status", response.status);
 	        }

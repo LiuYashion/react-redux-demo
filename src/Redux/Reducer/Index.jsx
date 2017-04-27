@@ -35,7 +35,7 @@ export const topicDetialData = (state = defaultlState , action = {}) => {
 }
 
 export const userLogData = (state = {} , action = {}) => {
-
+	console.log(action)
     switch(action.type){
         case UNDER_LOGIN:
             return {'state':'under'}
