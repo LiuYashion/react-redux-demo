@@ -1,0 +1,151 @@
+
+.topic-top{
+    width: 100%;
+    height: 2.3rem;
+    
+    margin-top: 2.4rem;
+}
+.top-tips{
+    height: 1rem;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    padding-left: 10px;
+    color: darkgray;
+}
+.top-bars{
+    height: 1rem;
+    font-size: 0.7rem;
+    line-height: 1rem;
+    margin-top: 0.2rem;
+    padding-left: 10px;
+    div{
+        display: inline-block;
+        padding: 0 10px;
+        margin-right: 20px;
+        border: solid 1px #21AA7D;
+        border-radius: 4px;
+        color: #21AA7D;
+    }
+    .selected{
+        background: #21AA7D;
+        color: white;
+    }
+}
+
+.topic-body{
+    border: solid 1px lightgray;
+    border-radius: 4px;
+    position: absolute;
+    top: 5rem;
+    bottom: 60px;
+    right: 10px;
+    left: 10px;
+    overflow: hidden;
+    ::-webkit-input-placeholder { 
+       color:darkgray
+    }
+    :-moz-placeholder { 
+       color:darkgray
+    }
+    ::-moz-placeholder { 
+       color:darkgray
+    }
+    :-ms-input-placeholder { 
+       color:darkgray
+    }
+    .input-title{
+        position: absolute;
+        font-size: 0.8rem;
+        top: 0px;
+        width: 100%;
+        display: block;
+        right: 0;
+        left: 0;
+        height: 30px;
+        border-bottom: solid 1px lightgray;
+    }
+    .input-content{
+        position: absolute;
+        font-size: 0.8rem;
+        width: 100%;
+        display: block;
+        top: 31px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        resize: none;
+        
+    }
+    .loading-shadow{
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba(180,180,180,0.4);
+        
+        .dark-tips{
+            position: absolute;
+            width: 9rem;
+            height: 3rem;
+            transform: translate(50%,50%);
+            right: 50%;
+            bottom: 50%;
+            text-align: center;
+        }
+    }
+    .dark{
+        background: white;
+    }
+}
+.topic-bottom{
+    position: absolute;
+    right: 10px;
+    left: 10px;
+    bottom: 10px;
+    height: 40px;
+    border-radius: 4px;
+    background: #21AA7D;
+    color: ghostwhite;
+    text-align: center;
+    line-height: 40px;
+}
+.post-tips{
+    text-align: center;
+    height: 2.3rem;
+    animation: out 400ms;
+    line-height: 2.3rem;
+}
+
+@keyframes out
+{
+    from {opacity: 0;}
+    to {opacity: 1}
+}
+.loading-tips{
+    width: 9rem;
+    height: 3.2rem;
+    text-align: center;
+    position: absolute;
+    transform: translate(50%,50%);
+    right: 50%;
+    bottom: 50%;
+    overflow: hidden;
+    border-radius: 8px;
+    animation: out 400ms;
+    .tips-up{
+        width: 100%;
+        height: 2rem;
+        background: ghostwhite;
+        border-bottom: solid 1px darkgray;
+        font-size: 0.7rem;
+        line-height: 2rem;
+    }
+    .tips-down{
+        width: 100%;
+        background: ghostwhite;
+        font-size: 0.6rem;
+        line-height: 1.2rem;
+        height: 1.2rem;
+    }
+}

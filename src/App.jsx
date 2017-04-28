@@ -18,6 +18,7 @@ import './Style/index.scss';
 
 import './Style/userLogin.scss';
 import './Style/topicDetial.scss';
+import './Style/PostTopic.scss';
 
 
 store.subscribe(() => { 

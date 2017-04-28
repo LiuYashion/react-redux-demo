@@ -13,6 +13,10 @@ export const LOGIN_SUCCESS  = 'LOGIN_SUCCESS'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const UNDER_LOGIN    = 'UNDER_LOGIN'
 
+export const STORE_TOPIC    = 'STORE_TOPIC'
+
+export const POST_DETIAL_DEGIN    = 'POST_DETIAL_DEGIN'
+export const POST_DETIAL_SUCCESS  = 'POST_DETIAL_SUCCESS'
 
 const underlogin  = () => {
 	return {
@@ -134,84 +138,62 @@ export const queryTopicDetial = (path) => {
 
 
 
-////记录单个商品列表状态
-//export const recordState = (id,chooseState,num,index) => {
-//  return{
-//      type:RECORD_STATE,
-//      id,
-//      chooseState,
-//      num,
-//      index
-//  }
-//}
-//
-////将商品列表保存在store中，组件再次渲染时调用
-//export const saveProductlist = productList => {
-//  return{
-//      type:SAVE_PRODUCT_LIST,
-//      productList
-//  }
-//}
-//
-////保存商品列表也获取到的数据
-//export const newProductData = productData => { 
-//  return {
-//      type:NEW_PRODUCT_DATA,
-//      productData
-//  }
-//}   
-//
-////销售列表页删除单个item
-//export const deleteItem = index => {   
-//  return {
-//      type:DELETE_ITEM,
-//      index
-//  }
-//}
-//
-////开始获取数据
-//const getDataStart = path => {
-//return {
-//  type: GET_DATA_START,
-//  path
-//}
-//}
-//
-////获取数据成功
-//const getDataSuccess = (path, json, success, name) => {
-//return {
-//  type: GET_DATA_SUCCESS,
-//  path ,
-//  json ,
-//  success ,
-//  name
-//}
-//}
-//
-//
-////手动调用获取数据的aciton
-//export const getData = (path, postData, success, name) => {
-//  let url = target + path + Tool.paramType(postData);
-//  return dispatch => {
-//      dispatch(getDataStart(postData))
-//      return fetch(url,{
-//          method: 'GET',
-//          headers: {
-//              'Content-Type': 'application/json',
-//          },
-//          mode: 'cors'
-//      })
-//      .then(response => response.json())
-//      .then(json => dispatch(getDataSuccess(path, json, success, name)))
-//      .catch(error => console.log(error))
-//  }
-//}
-//
-//
-////记录单个商品列表状态
-//export const testAction = (data) => {
-//  return{
-//      type:TEST_DISPATCH,
-//      data,
-//  }
-//}
+const topicData = (title, content, tab, accesstoken, url) => {
+  return {
+    type: STORE_TOPIC,
+    title, 
+    content,
+    tab,
+    accesstoken,
+    url
+  }
+}
+export const storeTopicDetial = (title, content, tab, accesstoken, url) => {
+
+	return dispatch => {
+    dispatch( topicData(title, content, tab, accesstoken, url) );
+	}
+  
+}
+
+
+
+const postBegin = (title, content, tab, accesstoken, url) => {
+  return {
+    type: POST_DETIAL_DEGIN
+  }
+}
+const postSuccess = (title, content, tab, accesstoken, url) => {
+  return {
+    type: POST_DETIAL_SUCCESS
+  }
+}
+export const postTopicDetial = (title, content, tab, accesstoken, url) => {
+
+	return dispatch => {
+    dispatch( postBegin(title, content, tab, accesstoken, url) );
+    return fetch(url,{
+        mode: 'cors',
+        method: "POST",
+        body:JSON.stringify({
+        	accesstoken:accesstoken,
+        	title:title,
+        	tab:tab,
+        	content:content
+        }),
+        headers: {
+		      'Accept': 'application/json',
+		      'Content-Type': 'application/json'
+		    }
+    })
+    .then(response => {
+        if(response.ok) {
+            response.json().then( json=>{ dispatch(postSuccess(json)) } )
+        }else{
+            console.log("status", response.status);
+        }
+    })
+    .catch(error => console.log(error))
+	}
+  
+}

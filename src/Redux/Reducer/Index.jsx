@@ -5,6 +5,9 @@ import Immutable from 'immutable'
 import {REQUEST_POSTS, RECEIVE_POSTS} from '../Action/Index'
 import {REQUEST_DETIAL, RECEIVE_DETIAL} from '../Action/Index'
 import {LOGIN_SUCCESS, LOGOUT_SUCCESS, UNDER_LOGIN} from '../Action/Index'
+import {STORE_TOPIC} from '../Action/Index'
+
+import {POST_DETIAL_DEGIN, POST_DETIAL_SUCCESS} from '../Action/Index'
 
 // reducer
 
@@ -35,7 +38,6 @@ export const topicDetialData = (state = defaultlState , action = {}) => {
 }
 
 export const userLogData = (state = {} , action = {}) => {
-	console.log(action)
     switch(action.type){
         case UNDER_LOGIN:
             return {'state':'under'}
@@ -48,55 +50,26 @@ export const userLogData = (state = {} , action = {}) => {
     }
 }
 
+export const topicData = (state = {} , action = {}) => {
+	//console.log(action)
+    switch(action.type){
+        case STORE_TOPIC:
+            return { 'title':action.title, 'content':action.content, 'tab':action.tab}
+        default:
+            return { 'title':'', 'content':'', 'tab':'' }
+    }
+}
 
-////手动获取数据
-//export const requestData = (state = {}, action = {}) => {
-//  switch(action.type){
-//      case GET_DATA_START:
-//          return state;
-//      case GET_DATA_SUCCESS:
-//          action.success(action.json);
-//          state[action.name] = action.json;
-//          return state;
-//      default:
-//          return state;
-//  }
-//}
-//
-//export const testData = (state = {}, action = {}) => {
-//  switch(action.type){
-//      case TEST_DISPATCH:
-//          return Object.assign({},state,action);
-//      default:
-//          return state;
-//  }
-//}
-//
-////记录商品列表页数据状态
-//export const producRecord = (state = {}, action = {}) => {
-//  switch(action.type){
-//      case RECORD_STATE:
-//          return Object.assign({},state,action);
-//      case SAVE_PRODUCT_LIST:
-//          state['productList'] = [...action.productList];
-//          return state;       //记录商品列表数据，但是不触发组件更新
-//      case NEW_PRODUCT_DATA:
-//          state['productData'] = [...action.productData];
-//          return state;
-//      default:
-//          return state 
-//  }
-//}
-//
-////销售记录页面数据
-//export const saleRecord = (state = Immutable.fromJS({}) , action = {}) => {
-//  switch(action.type){
-//      case DELETE_ITEM:
-//          return Immutable.Map({index:action.index})
-//      default:
-//          return state;
-//  }
-//}
-
+export const postStateData = (state = {} , action = {}) => {
+	//console.log(action)
+    switch(action.type){
+        case POST_DETIAL_DEGIN:
+            return { 'state':'begin' }
+        case POST_DETIAL_SUCCESS:
+            return { 'state':'success' }
+        default:
+            return { 'state':'none' }
+    }
+}
 
 
