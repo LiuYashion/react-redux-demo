@@ -9,6 +9,8 @@ import { HeadNav, Container } from './common/HeadNav';
 class Loading extends Component{
 	constructor(props, context) {
         super(props, context);
+        
+        
     }
 	render() {
 
@@ -16,6 +18,45 @@ class Loading extends Component{
             <div className="loading-wrap">              
 				<div className="loading-1"></div>	
 				<div className="loading-2"></div>	
+            </div>
+        )
+    }
+	
+}
+
+class Message extends Component{
+	constructor(props, context) {
+        super(props, context);
+        this.state = {
+        	message:'撒的发生的'
+        }
+        this.sendmessage = () => {
+        	let token = this.props.userLogData.data.token
+        	let id = this.props.topicDetialData.toJS().data.data.id
+        	let msg= this.state.message
+        	
+
+        	this.props.postTopicReply(id, msg, token)
+        	
+        	
+        }
+        this.inputMessage = (event) => {
+        	this.setState({message: event.target.value});
+        }
+    }
+	componentWillReceiveProps(nextProps){
+        console.log(nextProps)
+    }
+	render() {
+		
+		let {message} = this.state
+		let {replyStateData} = this.props
+	
+		
+		console.log(11)
+		
+        return (
+            <div>
             </div>
         )
     }
@@ -145,19 +186,18 @@ class Main extends Component {
         }
     }
     componentWillReceiveProps(nextProps){
-    	
-    	nextProps.userLogData.state = this.props.userLogData.state
-   		if(this.props.userLogData.data){
-   			nextProps.userLogData.data = this.props.userLogData.data
-   		}
-   		
         let data = nextProps.topicDetialData.get('data')
+        
         this.setState({
         	isFetching: nextProps.topicDetialData.get('isFetching'),
         	data: data ? data : ''
         })
+        
+        nextProps.userLogData.state = this.props.userLogData.state
+   		if(this.props.userLogData.data){
+   			nextProps.userLogData.data = this.props.userLogData.data
+   		}
     }
-
 	componentDidMount() {//获取数据
 		this.props.queryTopicDetial('/api/v1/topic/'+this.props.location.query.id)
     }
@@ -224,13 +264,14 @@ class Main extends Component {
         }
         
         
-		
+		console.log(this.props.userLogData.state)
         
         return (
             <div className="container">              
                 <HeadNav needHeadNav title={ this.state.data.data.title }/> 
                 { this.state.isFetching ? <Loading/> : '' }
                 { content }
+                { this.props.userLogData.state == 'login' ? <Message {...this.props}/> : ''}
             </div>
         );
     }

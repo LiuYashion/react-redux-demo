@@ -18,6 +18,10 @@ export const STORE_TOPIC    = 'STORE_TOPIC'
 export const POST_DETIAL_DEGIN    = 'POST_DETIAL_DEGIN'
 export const POST_DETIAL_SUCCESS  = 'POST_DETIAL_SUCCESS'
 
+export const REPLY_DEGIN    = 'REPLY_DEGIN'
+export const REPLY_SUCCESS  = 'REPLY_SUCCESS'
+
+
 const underlogin  = () => {
 	return {
     type: UNDER_LOGIN
@@ -194,6 +198,27 @@ export const postTopicDetial = (title, content, tab, accesstoken, url) => {
         }
     })
     .catch(error => console.log(error))
+	}
+  
+}
+
+
+
+const replyBegin = () => {
+  return {
+    type: REPLY_DEGIN
+  }
+}
+const replySuccess = () => {
+  return {
+    type: REPLY_SUCCESS
+  }
+}
+export const postTopicReply = (id, content, accesstoken) => {
+
+	return dispatch => {
+    dispatch( replyBegin() );
+    
 	}
   
 }

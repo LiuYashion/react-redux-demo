@@ -51,14 +51,15 @@ const Main = mySeting => {
     }
 	
 	function mapStateToProps(state) {
-	  	let { fetchData, topicDetialData, userLogData, topicData, postStateData } = state;
+	  	let { fetchData, topicDetialData, userLogData, topicData, postStateData, replyStateData } = state;
 	  
         return { 
             state: fetchData,
             topicDetialData,
             userLogData,
             topicData,
-            postStateData
+            postStateData,
+            replyStateData
         } 
 	}
 	

@@ -9,6 +9,9 @@ import {STORE_TOPIC} from '../Action/Index'
 
 import {POST_DETIAL_DEGIN, POST_DETIAL_SUCCESS} from '../Action/Index'
 
+import {REPLY_DEGIN, REPLY_SUCCESS} from '../Action/Index'
+
+
 // reducer
 
 //const initialState = Immutable.fromJS({}) //=Immutable.Map({})
@@ -73,3 +76,14 @@ export const postStateData = (state = {} , action = {}) => {
 }
 
 
+export const replyStateData = (state = {} , action = {}) => {
+
+    switch(action.type){
+        case REPLY_DEGIN:
+            return { 'state':'begin' }
+        case REPLY_SUCCESS:
+            return { 'state':'success' }
+        default:
+            return { 'state':'none' }
+    }
+}

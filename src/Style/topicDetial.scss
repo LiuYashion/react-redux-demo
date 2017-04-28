@@ -119,3 +119,39 @@
         word-wrap: break-word;
     }
 }
+
+.message-wrap{
+    display: block;
+    height: 4rem;
+    position: relative;
+}
+.message{
+    width: 100%;
+    height: 4rem;
+    background: #d8eae4;
+    border-left: solid 2px #21AA7D;
+    resize: none;
+    font-size: 0.7rem;
+}
+.send-button{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 3rem;
+    color: white;
+    height: 1rem;
+    background: #21AA7D;
+    border-radius: 4px;
+}
+.post-shadow{
+    position: absolute;
+    z-index: 1020;
+    color: #21AA7D;
+    text-align: center;
+    line-height: 4rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(240,240,240,0.5);
+}
