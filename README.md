@@ -1,5 +1,5 @@
 # React & Redux #
-&nbsp;&nbsp;&nbsp;&nbsp;这里完成了一个react版本的demo, react用法已经十分普遍， 网上教程也很多, 故这里侧重记录的是redux.
+这里完成了一个react版本的demo, react用法已经十分普遍， 网上教程也很多, 故这里侧重记录的是redux.
 </br>
 ### 启动
 ```
@@ -11,28 +11,28 @@
 
 </br>
 ### 梗概
-&nbsp;&nbsp;&nbsp;&nbsp;主题页
+主题页
 </br>
 ![pic02](https://github.com/LiuYashion/myCache/blob/master/react_redux/topics.png)
 </br>
-&nbsp;&nbsp;&nbsp;&nbsp;登陆页
+登陆页
 </br>
 ![pic01](https://github.com/LiuYashion/myCache/blob/master/react_redux/login.png)
 </br>
-&nbsp;&nbsp;&nbsp;&nbsp;发布页
+发布页
 </br>
 ![pic03](https://github.com/LiuYashion/myCache/blob/master/react_redux/post.png)
 
 
 </br>
 ### redux状态的管理
-&nbsp;&nbsp;&nbsp;&nbsp;这里推荐使用redux-devtools. 当redux项目复杂起来, 状态会变得难于管理, 尤其是有reducer的关联. 工具能记录每一次触发的action和改变的reducer, 视图也有树形和图表
+这里推荐使用redux-devtools. 当redux项目复杂起来, 状态会变得难于管理, 尤其是有reducer的关联. 工具能记录每一次触发的action和改变的reducer, 视图也有树形和图表
 ![pic02](https://github.com/LiuYashion/myCache/blob/master/react_redux/redux01.png)
 
 
 </br>
 ### react组件管理
-&nbsp;&nbsp;&nbsp;&nbsp;react尽管只是一个UI框架, 但其state控制着视图的状态, 也能达到相当高的复杂度, React Developer Tools可以方便你查看react组件的props和state
+react尽管只是一个UI框架, 但其state控制着视图的状态, 也能达到相当高的复杂度, React Developer Tools可以方便你查看react组件的props和state
 ![pic02](https://github.com/LiuYashion/myCache/blob/master/react_redux/redux02.png)
 
 
@@ -108,51 +108,3 @@ return false为阻止更新. 调用this.forceUpdate会跳过此步骤
 * 组件首字母大写
 * 向下传递props, child={ parent }, 子组件中获取为 this.props.child, 内容为parent
 * 当父组件某个状态需要由子组件来控制, 可以在父组件中定义一个方法, 在里面setState. 然后如上传入子组件即可
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-> 水电费水电费水电费
