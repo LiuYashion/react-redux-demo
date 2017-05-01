@@ -43,26 +43,28 @@ export const loginPost = (path, postData) => {
     let url = target + path
     return dispatch => {
 	    dispatch( underlogin() );
-	    return fetch(url,{
-	        mode: 'cors',
-	        method: "POST",
-	        body:JSON.stringify({accesstoken:postData}),
-	        headers: {
-			      'Accept': 'application/json',
-			      'Content-Type': 'application/json'
-			    }
-	    })
-	    .then(response => {
-	        if(response.ok) {
-	            response.json().then( json=>{
-	            	json.token = postData
-	            	dispatch( loginCNode(json) )
-	            } )
-	        }else{
-	            console.log("status", response.status);
-	        }
-	    })
-	    .catch(error => console.log(error))
+	    setTimeout(function(){
+		    return fetch(url,{
+		        mode: 'cors',
+		        method: "POST",
+		        body:JSON.stringify({accesstoken:postData}),
+		        headers: {
+				      'Accept': 'application/json',
+				      'Content-Type': 'application/json'
+				    }
+		    })
+		    .then(response => {
+		        if(response.ok) {
+		            response.json().then( json=>{
+		            	json.token = postData
+		            	dispatch( loginCNode(json) )
+		            } )
+		        }else{
+		            console.log("status", response.status);
+		        }
+		    })
+		    .catch(error => console.log(error))
+	    },3000)
     }
 }
 
