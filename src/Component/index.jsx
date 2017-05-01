@@ -164,8 +164,12 @@ class List extends Component{
 
 
 class Main extends Component {
+	
+	
+	
     constructor(props, context) {
         super(props, context);
+
         this.state = {
         	lists:{}
         }
@@ -175,6 +179,7 @@ class Main extends Component {
         
     }
     
+
     componentDidMount() {
         if (this.props.seting.url) {
             this.props.fetchPosts(this.props.seting.url,this.props.seting.data);
@@ -252,6 +257,10 @@ class Main extends Component {
         
     }
 }
+Main.defaultProps = {
+	name : "auto"
+}
+
 
 export default Container({
     id: 'index',  //应用关联使用的redux
