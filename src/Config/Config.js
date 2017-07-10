@@ -33,7 +33,7 @@ const system = (() => {
   }
   return system
 })()
-const target = process.env.NODE_ENV !== 'production' ? '' : 'http://dev.fe.ptdev.cn'; //目标网站
+const target = process.env.NODE_ENV !== 'production' ? 'http://10.194.11.210:9000' : 'http://10.194.11.210:9000'; //目标网站
 export {
   target,
   system

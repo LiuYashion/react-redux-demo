@@ -5,8 +5,8 @@ var config = require('./webpack.config.dev');
 //代理服务器
 var proxy = [{
 	path: '/*/*', //必须得有一个文件地址，如果顶层文件夹名字不同，则用/*代替
-	target: 'https://cnodejs.org',
-	host: 'cnodejs.org',
+	target: 'http://10.194.11.210:9000',
+	host: '10.194.11.210',
 	secure: false
 }];
 var server = new WebpackDevServer(webpack(config), {
